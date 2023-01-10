@@ -50,10 +50,14 @@ $(document).ready(function() {
                       <input type="password" title="비밀번호" id="loginPw" name="loginPw" data-title="비밀번호 " data-message="입력하세요." required="required" placeholder="비밀번호 ">
                       </li>
                     </ul>
-                    <div class="main-border-button">
+                    <div class="main-border-button" style="margin-top: 25px">
+                    	<div style="float: left;">
                         <button type="submit" id=btnLogin>로그인</button>
                         <button type="button" id=btnguest>비회원</button>
-                        <a href="register" id=btnregister>회원가입</a>
+                        </div>
+                        <div style="float: right;">
+                        <a href="register" id="btnregister">회원가입</a>
+                        </div>
                     </div>
                     </form>   
                      
@@ -68,7 +72,7 @@ $(document).ready(function() {
                       <input type="password" title="비밀번호" id="guestPw" name="guestPw" data-title="비밀번호 " data-message="입력하세요." required="required" placeholder="비밀번호 ">
                       </li>
                     </ul>
-                    <div class="main-border-button">
+                    <div class="main-border-button" style="margin-top: 35px">
                     <button type="submit" id=guest>로그인</button>
                     <button type="button" id=btnmember>회원</button>
                     </div>

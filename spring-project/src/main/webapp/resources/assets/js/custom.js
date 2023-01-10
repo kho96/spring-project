@@ -26,7 +26,8 @@
 	// 스크롤하면 헤더 빛나는 부분
 	$(window).scroll(function() {
 	  var scroll = $(window).scrollTop();
-	  var box = $('.header-text').height();
+	  //var box = $('.header-text').height();
+	  var box = 300;
 	  var header = $('header').height();
 	  // console.log(scroll); // 자기 마우스 스크롤
 	  // console.log(box); // 상영 및 상영예정 예고편 박스 높이

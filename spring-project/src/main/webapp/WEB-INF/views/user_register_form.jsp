@@ -17,7 +17,7 @@
                 <ul>
                   <li>  
                    <div class="form-group row">
-                         <div class="col-sm-4">
+                         <div class="col-sm-4" style="margin-top:10px">
                                <label class="label">아이디&nbsp&nbsp&nbsp</label>
                                <input type="text" id="userid"
                                      placeholder="아이디" name="userid">
@@ -74,7 +74,7 @@
      						 <input type="email" name="email" placeholder="email@gmail.com">
      						 
      						 <div class="main-border-button" style="padding-left:500px;">
-                        <button type="submit" id=guest>회원가입</button>
+                        <button type="submit" id="btnRegister">회원가입</button>
                    			 </div>
       					</li>
       					

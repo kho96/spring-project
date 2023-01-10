@@ -14,6 +14,20 @@
     position: relative;
     overflow: hidden;
 }
+.main-border-button button {
+	    font-size: 14px;
+    color: #fff;
+    background-color: #e75e8d;
+    padding: 12px 30px;
+    display: inline-block;
+    border-radius: 25px;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+}
 
 .label {
 	font-size:20px;
@@ -29,5 +43,15 @@
 }
 #btnregister {
 	color:white;
+}
+
+main-border-button #btnregister {
+	margin-top:50px;
+}
+
+.main-profile span {
+	font-size : 30px;
+	color:#fff;
+	
 }
 
