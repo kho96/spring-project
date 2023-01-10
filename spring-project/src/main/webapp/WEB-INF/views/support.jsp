@@ -75,7 +75,7 @@ $(function() {
 	              		<h4>공지사항</h4>
 	              	</div>	
 	                <div class="col-lg-4 main-button" style="text-align: right">
-	                	<a href="#"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
+	                	<a href="support?page=notice"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
 	                </div>
 	              	
 	            </div>
@@ -100,7 +100,7 @@ $(function() {
 	              		<h4>자주하는 질문</h4>
 	              	</div>	
 	                <div class="col-lg-4 main-button" style="text-align: right">
-	                	<a href="#"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
+	                	<a href="support?page=frequentlyQ"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
 	                </div>
 	              	
 	            </div>
@@ -125,7 +125,7 @@ $(function() {
 	              		<h4>Q<span style="color: #fff; font-size: 34px">&</span>A</h4>
 	              	</div>	
 	                <div class="col-lg-4 main-button" style="text-align: right">
-	                	<a href="#"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
+	                	<a href="support?page=qa-board"><i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i></a>
 	                </div>
 	              	
 	            </div>
@@ -137,10 +137,10 @@ $(function() {
 	            				margin: 10px">Q${i}. 유저질문${i} 입니다. 
 	            				<c:choose>
 	            					<c:when test="${i eq 3}">
-	            						<span style="font-size: x-large;">[답변 완료]</span>
+	            						<span style="font-size: x-large; margin-left: 20px">[답변 완료]</span>
 	            					</c:when>
 	            					<c:otherwise>
-	            						<span style="font-size: x-large;">[대기중]</span>
+	            						<span style="font-size: x-large; margin-left: 20px">[대기중]</span>
 	            					</c:otherwise>
 	            				</c:choose>
             				</p>
