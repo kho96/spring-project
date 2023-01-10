@@ -50,4 +50,9 @@ public class MainController {
 	public String showEventDetail() {
 		return "event_detail";
 	}
+	
+	@RequestMapping(value = "/support", method = RequestMethod.GET)
+	public String goSupportPage() {
+		return "support";
+	}
 }

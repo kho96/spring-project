@@ -96,7 +96,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="booking">예매</a></li>
                         <li><a href="event">이벤트</a></li>
                         <li><a href="#">스토어</a></li>
-                        <li><a href="#">고객센터 </a></li>
+                        <li><a href="support">고객센터 </a></li>
                         <li><a href="login">로그인
                         <img src="/assets/images/profile-header.jpg" alt="login"></a></li>
                     </ul>   
