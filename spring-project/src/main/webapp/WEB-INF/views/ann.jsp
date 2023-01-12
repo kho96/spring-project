@@ -58,15 +58,17 @@
 								</ul>
 							</div>
 							<div class="item">
-								<ul>
-									<li><h4>1000</h4></li>
-									<li><h4>결제</h4></li>
-									<li style="margin-right: 225px" id="title"><h4>
-											<a href="${contextPath}/movie/ann_board" class="title">인터넷 결제는 어떻게 하나요?</a>
-										</h4></li>
-									<li><h4>2023/01/06</h4></li>
-									<li><h4>55</h4></li>
-								</ul>
+								<c:forEach begin="1" end="10" var="i2">
+									<ul>
+										<li><h4>${i2}</h4></li>
+										<li><h4>결제</h4></li>
+										<li style="margin-right: 225px" id="title"><h4>
+												<a href="${contextPath}/movie/ann_board" class="title">인터넷 결제는 어떻게 하나요?</a>
+											</h4></li>
+										<li><h4>2023/01/06</h4></li>
+										<li><h4>55</h4></li>
+									</ul>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
