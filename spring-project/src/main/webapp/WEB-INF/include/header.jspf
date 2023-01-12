@@ -22,12 +22,13 @@
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/kse.css">
     <link rel="stylesheet" href="/assets/css/templatemo-cyborg-gaming.css">
     <link rel="stylesheet" href="/assets/css/owl.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet" href="/assets/css/kkh.css">
     <link rel="stylesheet" href="/assets/css/pdh.css">
-    <link rel="stylesheet" href="/assets/css/kse.css">
+   
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
@@ -47,7 +48,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
-  $(function() {
+  $(document).ready(function() {
 	  /* 위로가기 버튼 이벤트 */
 		$(window).scroll(function() {
 		    if ($(this).scrollTop() > 100) {
@@ -61,7 +62,36 @@ https://templatemo.com/tm-579-cyborg-gaming
 			e.preventDefault();
 			$("html, body").animate({scrollTop:0}, "300");
 		});
-  });
+		console.log(window.location.href);
+		var url = window.location.href;
+		switch (url) {
+		case "http://localhost/movie/list":
+			var test = $(".nav > li > a").eq(0);
+			console.log(test);
+			test.addClass("menu");
+			break;
+		case "http://localhost/movie/booking":
+			var test = $(".nav > li > a").eq(1);
+			console.log(test);
+			test.addClass("menu");
+			break;
+		case "http://localhost/movie/event":
+			var test = $(".nav > li > a").eq(2);
+			console.log(test);
+			test.addClass("menu");
+			break;
+		case "http://localhost/movie/store":
+			var test = $(".nav > li > a").eq(3);
+			console.log(test);
+			test.addClass("menu");
+			break;
+		case "http://localhost/movie/support":
+			var test = $(".nav > li > a").eq(4);
+			console.log(test);
+			test.addClass("menu");
+			break;
+		}
+	});
   </script>
   </head>
 
