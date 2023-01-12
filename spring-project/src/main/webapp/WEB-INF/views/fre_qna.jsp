@@ -25,11 +25,11 @@
 				<!-- NavBar start -->
 				<div class="col-lg-12">
 					<ul class="nav">
+						<li class="nav-item"><a class="nav-link active" href="${contextPath}/movie/fre_qna">자주하는 질문</a>
+						</li>
 						<li class="nav-item"><a class="nav-link" href="${contextPath}/movie/ann">공지사항</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${contextPath}/movie/qna">Q&A</a>
-						</li>
-						<li class="nav-item"><a class="nav-link active" href="${contextPath}/movie/fre_qna">자주하는 질문</a>
 						</li>
 					</ul>
 				</div>
