@@ -11,7 +11,7 @@
 	color: #ec6090;
 }
 .nav-link {
-	color: #ec6090;
+	color: #ccc;
 	font-size: 20px;
 }
 .nav {
@@ -99,7 +99,7 @@
 		var title = $(".title").text().substring(0, 10) + "...";
 		$(".title").text(title);
 		// nav 해당 페이지 글색
-		$(".active").css("color", "#ccc");
+		$(".active").css("color", "#ec6090");
 	});
 	</script>
 <%@include file="../include/footer.jspf" %>

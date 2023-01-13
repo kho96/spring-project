@@ -18,7 +18,7 @@ $(document).ready(function(){
 		
 	});
 	// nav 해당 페이지 글색
-	$(".active").css("color", "#ccc");
+	$(".active").css("color", "#ec6090");
 });
 </script>
 <style>
@@ -31,7 +31,7 @@ $(document).ready(function(){
 	color: #ec6090;
 }
 .nav-link {
-	color: #ec6090;
+	color: #ccc;
 	font-size: 20px;
 }
 .nav {

@@ -11,7 +11,7 @@
 	color: #ec6090;
 }
 .nav-link {
-	color: #ec6090;
+	color: #ccc;
 	font-size: 20px;
 }
 .nav {
@@ -64,7 +64,7 @@
 										<li style="margin-right:10px; margin-left:20px;"><h4>${i2}</h4></li>
 										<li><h4>userid</h4></li>
 										<li style="margin-right:180px" id="title"><h4>
-												<a href="${contextPath}/movie/qna_board" class="title">인터넷 결제는 어떻게 하나요?</a>
+												<a  href="${contextPath}/movie/qna_board" class="title">인터넷 결제는 어떻게 하나요?</a>
 											</h4></li>
 										<li><h4>2023/01/06</h4></li>
 										<li><h4>완료</h4></li>
@@ -104,8 +104,8 @@
 									<textarea rows="5" cols="50" placeholder="문의할 내용을 입력하세요."></textarea>
 								</div>
 								<div class="modal-footer">
-									<input type="checkbox"checked/> 공개
-									<input type="checkbox"/> 비공개
+									<input type="radio" name="state"/> 공개
+									<input type="radio" name="state"/> 비공개
 									<button type="button" class="btn btn-primary" style="background-color:#ec6090">제출</button>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
@@ -140,7 +140,7 @@
 		$("#modal-422289").trigger("click");
 		});
 		// nav 해당 페이지 글색
-		$(".active").css("color", "#ccc");
+		$(".active").css("color", "#ec6090");
 	});
 	</script>
 

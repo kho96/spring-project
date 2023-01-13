@@ -11,7 +11,7 @@
 	color: #ec6090;
 }
 .nav-link {
-	color: #ec6090;
+	color: #ccc;
 	font-size: 20px;
 }
 .nav {
@@ -63,9 +63,10 @@
 											</h4></li>
 										<li><h4>2023/01/06</h4></li>
 									</ul>
-									<ul class="answer" style="display:none;">
-										<li><h4>자주하는 질문의 답</h4></li>
-									</ul>
+									<div class="answer" style="display:none; margin-top:10px;">
+											<h6>Q. 인터넷 결제는 어떻게 하나요?</h6><br>
+											<h6>A. 결제 페이지에서 신용카드로 가능합니다.</h6>	
+									</div>
 							</div>
 								</c:forEach>
 						</div>
@@ -95,7 +96,7 @@
 	<script>
 	$(document).ready(function(){
 		// nav 해당 페이지 글색
-		$(".active").css("color", "#ccc");
+		$(".active").css("color", "#ec6090");
 		// 제목 10자리 이상 ..표시
 		var title = $(".title").text().substring(0, 10) + "...";
 		$(".title").text(title);
