@@ -32,6 +32,7 @@ $(document).ready(function(){
 }
 .nav-link {
 	color: #ec6090;
+	font-size: 20px;
 }
 .nav {
 	--bs-nav-link-hover-color: #f290b1;
@@ -57,16 +58,16 @@ $(document).ready(function(){
 					<a id="a_wirte" href="${contextPath}/movie/qna">
 						<i class="fa fa-reply fa-2x" aria-hidden="true"></i></a>
 					<div class="col-lg-12" style="padding-top:10px;">
-						<span><h5>인터넷 결제는 어떻게 하나요?</h5></span>
-						<span><h6 style="padding-left:970px">등록일자 2023/01/06</h6></span>
+						<h5><span>인터넷 결제는 어떻게 하나요?</span></h5>
+						<h6 style="padding-left:970px"><span>등록일자 2023/01/06</span></h6>
 					</div>
 				</div>
 				<div class="col-lg-12 question" style="margin-top:10px">
 					<textarea id="textarea" rows="10" cols="140" style="background-color:#1f2122; color:#ccc;" readonly>안녕하세요. </textarea>
 				</div>
 				<div class="col-lg-12" style="margin-top:50px">
-					<span><h5 style="color:#e75e8d">답변</h5></span>
-					<span><h6 style="padding-left:970px">등록일자 2023/01/12</h6></span>
+					<h5 style="color:#e75e8d"><span>답변</span></h5>
+					<h6 style="padding-left:970px"><span>등록일자 2023/01/12</span></h6>
 				</div>
 				<div class="col-lg-12 answer" style="margin-top:10px">
 					<textarea rows="10" cols="140" style="background-color:#1f2122; color:#ccc;" readonly>안녕하세요. 고객님 </textarea>

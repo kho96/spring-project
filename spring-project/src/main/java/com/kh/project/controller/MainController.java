@@ -104,8 +104,4 @@ public class MainController {
 	public String showFre_qna() {
 		return "fre_qna";
 	}
-	@RequestMapping(value = "/support2", method = RequestMethod.GET)
-	public String supprot2() {
-		return "support2";
-	}
 }

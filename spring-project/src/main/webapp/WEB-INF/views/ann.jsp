@@ -12,6 +12,7 @@
 }
 .nav-link {
 	color: #ec6090;
+	font-size: 20px;
 }
 .nav {
 	--bs-nav-link-hover-color: #f290b1;
@@ -51,25 +52,25 @@
 							<div class="item">
 								<ul>
 									<li><h4>글번호</h4></li>
-									<li><h4>구분</h4></li>
-									<li style="margin-right: 225px"><h4>제목</h4></li>
+									<li style="margin-left:5px;"><h4>구분</h4></li>
+									<li style="margin-left:10px; margin-right: 200px"><h4>제목</h4></li>
 									<li><h4>등록날짜</h4></li>
 									<li><h4>조회수</h4></li>
 								</ul>
 							</div>
-							<div class="item">
 								<c:forEach begin="1" end="10" var="i2">
+							<div class="item">
 									<ul>
-										<li><h4>${i2}</h4></li>
+										<li style="margin-left:10px;"><h4>${i2}</h4></li>
 										<li><h4>결제</h4></li>
-										<li style="margin-right: 225px" id="title"><h4>
+										<li style="margin-right: 200px" id="title"><h4>
 												<a href="${contextPath}/movie/ann_board" class="title">인터넷 결제는 어떻게 하나요?</a>
 											</h4></li>
 										<li><h4>2023/01/06</h4></li>
 										<li><h4>55</h4></li>
 									</ul>
-								</c:forEach>
 							</div>
+								</c:forEach>
 						</div>
 					</div>
 					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
@@ -87,16 +88,11 @@
 			</div>
 		</div>
 	</div>
-<%@include file="../include/footer.jspf" %>
-	<script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	</script>
 	<script>
 	$(document).ready(function(){
 		// 제목 10자리 이상 ..표시
@@ -106,4 +102,6 @@
 		$(".active").css("color", "#ccc");
 	});
 	</script>
+<%@include file="../include/footer.jspf" %>
+	
 

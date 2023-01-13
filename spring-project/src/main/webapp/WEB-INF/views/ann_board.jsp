@@ -23,6 +23,7 @@ $(document).ready(function(){
 }
 .nav-link {
 	color: #ec6090;
+	font-size: 20px;
 }
 .nav {
 	--bs-nav-link-hover-color: #f290b1;
@@ -48,8 +49,8 @@ $(document).ready(function(){
 					<a id="a_wirte" href="${contextPath}/movie/ann">
 						<i class="fa fa-reply fa-2x" aria-hidden="true"></i></a>
 					<div class="col-lg-12" style="padding-top:10px;">
-						<span><h5>인터넷 결제는 어떻게 하나요?</h5></span>
-						<span><h6 style="padding-left:880px">조회수 55  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 등록일자 2023/01/12</h6></span>
+						<h5><span>인터넷 결제는 어떻게 하나요?</span></h5>
+						<h6 style="padding-left:880px"><span>조회수 55  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 등록일자 2023/01/12</span></h6>
 					</div>
 				</div>
 				<div class="col-lg-12 question" style="margin-top:10px">

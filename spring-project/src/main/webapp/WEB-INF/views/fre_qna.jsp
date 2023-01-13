@@ -12,6 +12,7 @@
 }
 .nav-link {
 	color: #ec6090;
+	font-size: 20px;
 }
 .nav {
 	--bs-nav-link-hover-color: #f290b1;
@@ -47,24 +48,26 @@
 							<div class="item">
 								<ul>
 									<li><h4>글번호</h4></li>
-									<li><h4>구분</h4></li>
-									<li style="margin-right: 225px"><h4>제목</h4></li>
-									<li><h4>등록날짜</h4></li>
+									<li style="margin-left:30px;"><h4>구분</h4></li>
+									<li style="margin-left:5px; margin-right: 200px;"><h4>제목</h4></li>
+									<li style="margin-left:10px;"><h4>등록날짜</h4></li>
 								</ul>
 							</div>
+								<c:forEach var="i2" begin="1" end="10">
 							<div class="item">
-								<ul>
-									<li><h4>1000</h4></li>
-									<li><h4>결제</h4></li>
-									<li style="margin-right: 225px" id="title"><h4>
-											<a href="#" class="title">인터넷 결제는 어떻게 하나요?</a>
-										</h4></li>
-									<li><h4>2023/01/06</h4></li>
-								</ul>
+									<ul>
+										<li style="margin-right:10px; margin-left:20px;"><h4>1</h4></li>
+										<li><h4>결제</h4></li>
+										<li style="margin-right: 230px;"><h4>
+												<a href="#" class="title">인터넷 결제는 어떻게 하나요?</a>
+											</h4></li>
+										<li><h4>2023/01/06</h4></li>
+									</ul>
+									<ul class="answer" style="display:none;">
+										<li><h4>자주하는 질문의 답</h4></li>
+									</ul>
 							</div>
-							<div class="item answer" style="display:none">
-								<h6>자주하는 질문의 답</h6>
-							</div>
+								</c:forEach>
 						</div>
 					</div>
 					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
@@ -82,32 +85,37 @@
 			</div>
 		</div>
 	</div>
-<%@include file="../include/footer.jspf" %>
-	<script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
+	
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 	<script>
 	$(document).ready(function(){
+		// nav 해당 페이지 글색
+		$(".active").css("color", "#ccc");
 		// 제목 10자리 이상 ..표시
 		var title = $(".title").text().substring(0, 10) + "...";
 		$(".title").text(title);
-		// nav 해당 페이지 글색
-		$(".active").css("color", "#ccc");
 		// 제목 클릭하면 자주하는 질문 답변 등장
 		$(".title").click(function(e){
 			e.preventDefault();
-			if((".answer").css("display","none")){
-				$(".answer").slideDown(1000);
+// 			var target = $(this).parent().parent().parent().next();
+			var target = $(this).closest("ul").next();
+			if($(this).attr("data-answer-show") == "true"){
+				target.slideUp(1000);
+				$(this).attr("data-answer-show", "false");
 			} else {
-				$(".answer").slideUp(1000);
+				target.slideDown(1000);
+				$(this).attr("data-answer-show", "true");
 			}
 		});
 	});
 	</script>
+	
+	
+<%@include file="../include/footer.jspf" %>
+	
 

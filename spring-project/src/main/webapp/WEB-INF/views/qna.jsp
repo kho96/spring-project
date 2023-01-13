@@ -12,6 +12,7 @@
 }
 .nav-link {
 	color: #ec6090;
+	font-size: 20px;
 }
 .nav {
 	--bs-nav-link-hover-color: #f290b1;
@@ -50,26 +51,26 @@
 						<div class="col-lg-12">
 							<div class="item">
 								<ul>
-									<li><h4>글번호</h4></li>
-									<li><h4>구분</h4></li>
-									<li style="margin-right: 225px"><h4>제목</h4></li>
+									<li style="margin-right:10px; margin-left:10px;"><h4>글번호</h4></li>
+									<li style="margin-left:10px"><h4>작성자</h4></li>
+									<li style="margin-right:180px"><h4>제목</h4></li>
 									<li><h4>등록날짜</h4></li>
-									<li><h4>답변여부</h4></li>
+									<li style="margin-left:10px"><h4>답변여부</h4></li>
 								</ul>
 							</div>
-							<div class="item">
 								<c:forEach var="i2" begin="1" end="10">
+							<div class="item">
 									<ul>
-										<li><h4>${i2}</h4></li>
-										<li><h4>공개</h4></li>
-										<li style="margin-right: 225px" id="title"><h4>
+										<li style="margin-right:10px; margin-left:20px;"><h4>${i2}</h4></li>
+										<li><h4>userid</h4></li>
+										<li style="margin-right:180px" id="title"><h4>
 												<a href="${contextPath}/movie/qna_board" class="title">인터넷 결제는 어떻게 하나요?</a>
 											</h4></li>
 										<li><h4>2023/01/06</h4></li>
 										<li><h4>완료</h4></li>
 									</ul>
-								</c:forEach>
 							</div>
+								</c:forEach>
 						</div>
 					</div>
 					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
@@ -103,7 +104,8 @@
 									<textarea rows="5" cols="50" placeholder="문의할 내용을 입력하세요."></textarea>
 								</div>
 								<div class="modal-footer">
-									<h4 style="color: black; margin-right: 130px">제출하시겠습니까?</h4>
+									<input type="checkbox"checked/> 공개
+									<input type="checkbox"/> 비공개
 									<button type="button" class="btn btn-primary" style="background-color:#ec6090">제출</button>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
