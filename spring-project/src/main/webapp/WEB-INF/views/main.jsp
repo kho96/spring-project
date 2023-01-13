@@ -95,12 +95,12 @@ $(document).ready(function(){
                	 <!-- 영화 한 편 시작-->
 	                  <div class="item">
 	                    <div class="thumb">
-	                      <a href="#"><img src="/assets/images/mov02.jpg"/></a>
+	                      <a href="${contextPath}/movie/detail"><img src="/assets/images/mov02.jpg"/></a>
 	                      <div class="hover-effect">
 	                        <h6>써니</h6>
 	                      </div>
 	                    </div>
-	                   <h4><a href="#">써니</a><br><span>249K Downloads</span></h4>
+	                   <h4><a href="${contextPath}/movie/detail">써니</a><br><span>249K Downloads</span></h4>
 	                    <ul>
 	                      <li><i class="fa fa-star"></i> 4.8</li>
 	                      <li><i class="fa fa-eye"></i> 2.3M</li>
@@ -116,12 +116,12 @@ $(document).ready(function(){
 	               	 <!-- 영화 한 편 시작-->
 		                  <div class="item">
 		                    <div class="thumb">
-		                      <a href="#"><img src="/assets/images/mov01.jpg"/></a>
+		                      <a href="${contextPath}/movie/detail"><img src="/assets/images/mov01.jpg"/></a>
 		                      <div class="hover-effect">
 		                        <h6>써니</h6>
 		                      </div>
 		                    </div>
-		                   <h4><a href="#">써니</a><br><span>249K Downloads</span></h4>
+		                   <h4><a href="${contextPath}/movie/detail">써니</a><br><span>249K Downloads</span></h4>
 		                    <ul>
 		                      <li><i class="fa fa-star"></i> 4.8</li>
 		                      <li><i class="fa fa-eye"></i> 2.3M</li>

@@ -66,17 +66,17 @@ $(document).ready(function(){
 									<a href="/movie/detail">써니</a>
 								</h4>
 							</div>
-							<div class="down-content">
+							<div class="down-content" style="margin-top:5px;">
 								<h6>
-									예매율 
+									예매율 66%<br>
 									<span><i class="fa fa-star" style="color: yellow;"></i>	4.9</span>
 								</h6>
 							</div>
 							<div class="down-content">
-								<h6>2023년01월05</h6>
+								<h6>2023년01월05일</h6>
 							</div>
 							<div class="down-content">
-								<div class="main-button">
+								<div class="main-button" style="margin-top:10px">
 									<a href="/movie/booking">예매하기</a>
 								</div>
 								<span><i class="fa fa-eye"></i> 183</span>
@@ -105,9 +105,9 @@ $(document).ready(function(){
 									<a href="/movie/detail">비열한 거리</a>
 								</h4>
 							</div>
-							<div class="down-content">
+							<div class="down-content" style="margin-top:5px;">
 								<h6>
-									예매율 
+									예매율 66%<br>
 									<span><i class="fa fa-star" style="color: yellow;"></i>	4.9</span>
 								</h6>
 							</div>

@@ -46,7 +46,7 @@
                   <div class="col-lg-4">
                     <img src="/assets/images/mov03.jpg" alt="" style="border-radius: 23px;">
                   </div>
-                  <div class="col-lg-8 align-self-center">
+                  <div class="col-lg-8">
                     <div class="main-info header-text">
                       <span>현재상영중</span><!--상영 예정작: <span>예매 중</span><span>d-10</span>  -->
                       <h2>써니</h2><br>
