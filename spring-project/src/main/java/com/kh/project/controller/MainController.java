@@ -84,24 +84,4 @@ public class MainController {
 	public String storeBasket() {
 		return "store_cart";
 	}
-	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	public String showQna() {
-		return "qna";
-	}
-	@RequestMapping(value = "/qna_board", method = RequestMethod.GET)
-	public String showQna_board() {
-		return "qna_board";
-	}
-	@RequestMapping(value = "/ann", method = RequestMethod.GET)
-	public String showAnn() {
-		return "ann";
-	}
-	@RequestMapping(value = "/ann_board", method = RequestMethod.GET)
-	public String showAnn_board() {
-		return "ann_board";
-	}
-	@RequestMapping(value = "/fre_qna", method = RequestMethod.GET)
-	public String showFre_qna() {
-		return "fre_qna";
-	}
 }
