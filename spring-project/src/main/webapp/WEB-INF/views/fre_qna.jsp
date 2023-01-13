@@ -104,6 +104,7 @@
 			e.preventDefault();
 // 			var target = $(this).parent().parent().parent().next();
 			var target = $(this).closest("ul").next();
+			$(".answer").slideUp(1000);
 			if($(this).attr("data-answer-show") == "true"){
 				target.slideUp(1000);
 				$(this).attr("data-answer-show", "false");
