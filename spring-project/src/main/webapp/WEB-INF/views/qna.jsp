@@ -101,7 +101,8 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<textarea rows="5" cols="50" placeholder="문의할 내용을 입력하세요."></textarea>
+									<textarea rows="1" cols="50" placeholder="제목을 입력하세요.(50자 이내)"></textarea>
+									<textarea rows="5" cols="50" placeholder="문의할 내용을 입력하세요." style="margin-top:5px;"></textarea>
 								</div>
 								<div class="modal-footer">
 									<input type="radio" name="state"/> 공개
