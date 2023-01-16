@@ -24,6 +24,49 @@ $(document).ready(function() {
 	$("#btnModify").click(function() {
 		location.href = "${contextPath}/movie/admin/movie";
 	});
+
+	// 영화 이름으로 검색
+	$("#frmSearchMovieApi").submit(function(e) {
+		e.preventDefault();
+		var received_data = ""; // 전역변수 received_data 초기화
+		var keyword = $("#keyword").val(); // 영화 이름
+		var url = "${contextPath}/movie/admin/movie/search?keyword=" + keyword;
+		
+        fetch(url, {
+        	method : 'POST',
+        	headers : {
+        		"Content-Type": "application/json",
+        	},
+        })
+        .then(response => response.json())
+        .then(json => {
+        	var result = json.Data[0].Result;
+           
+            for (var i = 0; i < result.length; i++) {
+            	// 제목 앞뒤로 !HS !HE 붙은거 자르기
+            	const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+            	var title = result[i].title.replace(regExp, "");
+            	title = title.replace(/HE|HS/g, "");
+            	title = title.replace(/ +/g, " ");
+            	title = title.trim(); // 공백 제거
+            	
+            	// 셀렉트 박스에 제목 넣기
+            	$('<option></option>').val(title).text(title).appendTo($('#term'));
+            };
+            
+        	// 받아온 영화 데이터 폼에 입력하기
+        	$("#term").change(function() {
+        		var select = $("#term option:selected");
+        		var movie_title = select.val(); // 선택된 영화 제목 저장
+        		var idx = $("#term option").index(select) - 1; // 선택한 영화 인덱스값
+        		var selectMovie = result[idx]; // 선택한 영화
+        		var plotText = selectMovie.plots.plot[0].plotText; // 영화 줄거리
+        		$("#movie_title").val(movie_title).text(movie_title);
+        		$("#movie_story").val("123");
+        	});
+        })
+	});
+
 });
 </script>
 
@@ -109,32 +152,74 @@ $(document).ready(function() {
           -->
           
           <!-- 영화 관리 시작 -->
-<!--           <div class="most-popular header-text"> -->
-<!--             <div class="row"> -->
-<!--               <div class="col-lg-12"> -->
-              
-<!--                 <div class="heading-section"> -->
-<!--                   <h4><em>영화 관리</em></h4> -->
-<!--                 </div> -->
+          <div class="most-popular header-text">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="heading-section">
+                  <h4><em>영화 관리</em></h4>
+                </div>
+
+                <div class="row">
+                  <h4>영화 검색</h4>
+                  <div class="form-area" style="margin-top:10px">
+                    <form class="form-input" id="frmSearchMovieApi" action="#">
+                      <input type="text" placeholder="영화 검색하기" id="keyword" name="keyword">
+                      <i class="fa fa-search"></i>
+                    </form>
+                  </div>
+                </div>
                 
+                <div class="row" style="margin-top:10px;">
+                  <h4>영화 리스트</h4>
+                  <div class="form-area" style="margin-top:10px">
+                    <form class="form-input" id="frmMovieList" action="#">
+                       <ul>
+					     <li>
+					       <select name="term" id="term">
+					         <option value="">영화 선택</option>
+					       </select>
+					     </li>
+					   </ul>
+                    </form>
+                  </div>
+                </div>
+
 <!--                 <div class="row"> -->
-<!--                   <a></a> -->
-<!--                   폼 테스트 -->
-<!--                   <div class="form-area"> -->
-<!--                     <form id="form-input" action="#"> -->
-<!--                       <input type="text" placeholder="대충 폼 뭐시기" id="searchText" name="searchKeyword" onkeypress="handle"> -->
-<!--                       <i class="fa fa-search"></i> -->
-<!--                     </form> -->
+<!--                   <div class="main-border-button"> -->
+<!--                     <a href="#" data-toggle="modal" data-target="#exampleModal"> -->
+<!--                       영화 추가 하기 -->
+<!--                     </a> -->
 <!--                   </div> -->
-<!--                   // 폼 테스트 -->
-                  
 <!--                 </div> -->
-                
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
+
+              </div>
+            </div>
+            
+            <div class="row">
+            
+              <div class="col-lg-6">
+                <div class="row" style="margin-top:10px;">
+                  <form class="form-input" id="frmMovieInsert" action="#">
+                    <h4><label for="movie_title">영화 제목</label></h4>
+                    <input type="text" class="form-control" id="movie_title" name="movie_title">
+                  </form>
+                </div>
+              </div>
+              
+              <div class="col-lg-6">
+                <div class="row" style="margin-top:10px;">
+                  <form class="form-input" id="frmMovieInsert" action="#">
+                    <h4><label for="movie_story">줄거리</label></h4>
+                    <textarea class="form-control" rows="5" id="stroy" name="movie_story"></textarea>
+                  </form>
+                </div>
+              </div>
+              
+            </div>
+          </div>
           <!-- 영화 관리 끝 -->
-          
+
           <!-- 영화 리스트 -->
           <div class="game-details">
             <h2>영화 목록</h2>
@@ -145,7 +230,7 @@ $(document).ready(function() {
             
               <!-- 폼 테스트 -->
               <div class="form-area">
-                <form id="form-input" action="#">
+                <form class="form-input" action="#">
                   <input type="text" placeholder="영화 제목 검색" id="searchText" name="searchKeyword" onkeypress="handle">
                   <i class="fa fa-search"></i>
                 </form>

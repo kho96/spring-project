@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "movie/admin/*")
+@RequestMapping(value = "/movie/admin/*")
 public class AdminController {
 	
 	@RequestMapping(value = "/movie", method = RequestMethod.GET)
