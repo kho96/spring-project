@@ -26,6 +26,11 @@ public class AdminController {
 		return "admin_movie";
 	}
 	
+	@RequestMapping(value = "/theater_management", method = RequestMethod.GET)
+	public String showTheater() {
+		return "admin_theater";
+	}
+	
 	@RequestMapping(value = "/article", method = RequestMethod.GET)
 	public String showArticle() {
 		return "admin_article";

@@ -97,3 +97,17 @@
 	border-color: #e75e8d;
 	color: #e75e8d;
 }
+
+.row-theater {
+	text-align: center;
+	margin-top: 20px
+}
+
+.row-theater div button {
+	width: 140px;
+}
+
+.row-theater div select {
+	text-align: center;
+	
+}

@@ -10,6 +10,7 @@ $(document).ready(function() {
 });
 </script>
 
+  <!-- 사이드바 시작 -->
   <div class="sidebar">
     <!-- 사이드 바 메뉴-->
     <div class="panel panel-info">
@@ -27,6 +28,9 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
            </a>
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
+           </a>
            <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
              게시글 관리
            </a>
@@ -38,7 +42,8 @@ $(document).ready(function() {
     </div>
      <!-- 사이드 바 메뉴 끝-->
   </div>
-	
+  <!-- 사이드바 끝 -->
+  
   <div class="container">
 
     <!-- ***** 관리자 페이지 ***** -->
@@ -62,7 +67,7 @@ $(document).ready(function() {
                     <h4>영화 관리</h4>
 <!--                     <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout.</p> -->
                     <div class="main-button">
-					<a href="admin/movie_management">
+					<a href="${contextPath}/movie/admin/movie_management">
 					  영화 관리
 					</a>
                     </div>
@@ -75,7 +80,7 @@ $(document).ready(function() {
                     </div>
                     <h4>게시판 관리</h4>
                     <div class="main-button">
-					<a href="admin/article">
+					<a href="${contextPath}/movie/admin/article">
 					  게시판 관리
 					</a>
                     </div>
@@ -88,7 +93,7 @@ $(document).ready(function() {
                     </div>
                     <h4>회원 관리</h4>
                     <div class="main-button">
-					<a href="admin/member">
+					<a href="${contextPath}/movie/admin/member">
 					  회원 관리
 					</a>
                     </div>

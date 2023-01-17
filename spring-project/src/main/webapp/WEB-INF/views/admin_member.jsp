@@ -45,6 +45,9 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
            </a>
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
+           </a>
            <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
              게시글 관리
            </a>
