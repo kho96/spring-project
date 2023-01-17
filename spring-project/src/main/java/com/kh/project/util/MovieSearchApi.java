@@ -21,6 +21,10 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource("classpath:setting.properties")
 public class MovieSearchApi {
+	@Value("${NAVER-CLIENT}")
+	private String clientId;
+	@Value("${NAVER-KEY}")
+	private String clientSecret;
 	@Value("${KMDB-KEY}")
 	private String ServiceKey;
 	
@@ -29,7 +33,7 @@ public class MovieSearchApi {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 	
-	public String search(String url, String keyword) {
+	public String search(int command, String url, String keyword) {
 		// 검색어 인코딩
 		try {
 			keyword = URLEncoder.encode(keyword, "UTF-8");
@@ -42,8 +46,18 @@ public class MovieSearchApi {
 		String apiURL = "";
 		Map<String, String> requestHeaders = new HashMap<>();
 		String responseBody = "";
-		apiURL = url + keyword + "&ServiceKey=" + ServiceKey;	
-		requestHeaders.put("ServiceKey", ServiceKey);
+		switch (command) {
+		case 0:
+			apiURL = url + keyword + "&ServiceKey=" + ServiceKey;	
+			requestHeaders.put("ServiceKey", ServiceKey);
+			break;
+		case 1:
+			apiURL = url + keyword;	
+			requestHeaders.put("X-Naver-Client-Id", clientId);
+			requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+			break;
+		}
+		
 		responseBody = get(apiURL, requestHeaders);
 		return responseBody;
 
@@ -107,4 +121,4 @@ public class MovieSearchApi {
 		return null;
 	} // readBody
 
-} // NaverMovieSearchApi
+} // MovieSearchApi

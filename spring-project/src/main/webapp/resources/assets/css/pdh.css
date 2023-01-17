@@ -25,6 +25,10 @@
   font-size: 16px;
 }
 
+.movie-list {
+	padding-top: 10px;
+}
+
 .sidebar {
 	position: fixed;
 	width: 14%;
