@@ -47,7 +47,7 @@ $(document).ready(function() {
                       <input type="text" title="아이디" id="loginid" name="loginid" data-title="아이디를 " data-message="입력하세요." required="required" placeholder="아이디" autofocus>
                       </li>
                       <li>
-                      <input type="password" title="비밀번호" id="loginPw" name="loginPw" data-title="비밀번호 " data-message="입력하세요." required="required" placeholder="비밀번호 ">
+                      <input type="password" title="비밀번호" id="loginpw" name="loginpw" data-title="비밀번호 " data-message="입력하세요." required="required" placeholder="비밀번호 ">
                       </li>
                     </ul>
                     <div class="main-border-button" style="margin-top: 25px">

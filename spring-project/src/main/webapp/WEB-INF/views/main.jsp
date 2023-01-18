@@ -1,8 +1,6 @@
 <%@page import="com.kh.project.util.MovieShuffle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-
 <%
 	String playList = MovieShuffle.shuffle();
 	String[] movies = playList.split(",");
@@ -45,7 +43,8 @@ $(document).ready(function(){
 	      toggle_command = false;
 	      console.log(toggle_command)
 	   });
-});
+	   
+
 </script>
 <div class="container">
     <div class="row">
