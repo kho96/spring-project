@@ -45,8 +45,11 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
              영화 관리
            </a>
-           <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
-             게시글 관리
+           <a href="${contextPath}/movie/admin/annList" class="list-group-item list-group-item-action">
+             공지사항 관리
+           </a>
+           <a href="${contextPath}/movie/admin/qnaList" class="list-group-item list-group-item-action">
+             QNA 관리
            </a>
            <a href="${contextPath}/movie/admin/member" class="list-group-item list-group-item-action active">
              회원 관리

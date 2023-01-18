@@ -27,8 +27,11 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
              영화 관리
            </a>
-           <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
-             게시글 관리
+           <a href="${contextPath}/movie/admin/annList" class="list-group-item list-group-item-action">
+             공지사항 관리
+           </a>
+           <a href="${contextPath}/movie/admin/qnaList" class="list-group-item list-group-item-action">
+             QNA 관리
            </a>
            <a href="${contextPath}/movie/admin/member" class="list-group-item list-group-item-action">
              회원 관리
@@ -73,11 +76,11 @@ $(document).ready(function() {
                     <div class="icon">
                       <img src="/assets/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
-                    <h4>게시판 관리</h4>
+                    <h4>공지사항 관리</h4>
 <!--                     <p>If you wish to support us, you can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com</p> -->
                     <div class="main-button">
-					<a href="admin/article">
-					  게시판 관리
+					<a href="admin/annList">
+					  공지사항 관리
 					</a>
                     </div>
                   </div>

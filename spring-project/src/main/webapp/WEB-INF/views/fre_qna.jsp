@@ -53,7 +53,7 @@
 									<li style="margin-left:10px;"><h4>등록날짜</h4></li>
 								</ul>
 							</div>
-								<c:forEach var="i2" begin="1" end="10">
+<%-- 								<c:forEach var="i2" begin="1" end="10"> --%>
 							<div class="item">
 									<ul>
 										<li style="margin-right:10px; margin-left:20px;"><h4>1</h4></li>
@@ -65,23 +65,23 @@
 									</ul>
 									<div class="answer" style="display:none; margin-top:10px;">
 											<h6>Q. 인터넷 결제는 어떻게 하나요?</h6><br>
-											<h6>A. 결제 페이지에서 신용카드로 가능합니다.</h6>	
+											<h6>A. 결제 페이지에서 포인트로 가능합니다.</h6>	
 									</div>
 							</div>
-								</c:forEach>
+<%-- 								</c:forEach> --%>
 						</div>
 					</div>
-					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
-		         	<div class="pagination">
-					  <a href="#">&laquo;</a>
-					  <c:forEach var="i" begin="1" end="5">
-					  	<a href="#"
-					  		<c:if test="${i eq 1 }">style="background-color: #e75e8d"</c:if>
-					  	>${i}</a>
-					  </c:forEach>
-					  <a href="#">&raquo;</a>
-					</div>
-		         </div><!-- 페이징 끝  -->
+<!-- 					<div style="margin-top: 15px; text-align: center"> 페이징 시작  -->
+<!-- 		         	<div class="pagination"> -->
+<!-- 					  <a href="#">&laquo;</a> -->
+<%-- 					  <c:forEach var="i" begin="1" end="5"> --%>
+<!-- 					  	<a href="#" -->
+<%-- 					  		<c:if test="${i eq 1 }">style="background-color: #e75e8d"</c:if> --%>
+<%-- 					  	>${i}</a> --%>
+<%-- 					  </c:forEach> --%>
+<!-- 					  <a href="#">&raquo;</a> -->
+<!-- 					</div> -->
+<!-- 		         </div>페이징 끝  -->
 				</div>
 			</div>
 		</div>

@@ -45,7 +45,7 @@
 							</div>
 							<div class="col-lg-4 main-button" style="text-align: right">
 								<a id="a_wirte" href="#"><i class="fa fa-pencil fa-2x"
-									aria-hidden="true"></i></a>
+									aria-hidden="true" data-userid="${qnaVo.userid}"></i></a>
 							</div>
 						</div>
 						<div class="col-lg-12">
@@ -58,16 +58,25 @@
 									<li style="margin-left:10px"><h4>답변여부</h4></li>
 								</ul>
 							</div>
-								<c:forEach var="i2" begin="1" end="10">
+								<c:forEach items="${list}" var="qnaVo">
 							<div class="item">
 									<ul>
-										<li style="margin-right:10px; margin-left:20px;"><h4>${i2}</h4></li>
-										<li><h4>userid</h4></li>
+										<li style="margin-right:10px; margin-left:20px;"><h4>${qnaVo.qna_no}</h4></li>
+										<li><h4>${qnaVo.userid}</h4></li>
 										<li style="margin-right:180px" id="title"><h4>
-												<a  href="${contextPath}/movie/qna_board" class="title">인터넷 결제는 어떻게 하나요?</a>
+												<a data-userid="${qnaVo.userid}" data-state="${qnaVo.qna_state}" data-qna_no="${qnaVo.qna_no}" data-page="${pagindDto.page}" href="#" class="title">${qnaVo.qna_title}</a>
 											</h4></li>
-										<li><h4>2023/01/06</h4></li>
-										<li><h4>완료</h4></li>
+										<li><h4>${qnaVo.qna_regdate}</h4></li>
+										<li>
+											<c:choose>
+												<c:when test="${qnaVo.answer_no eq 0}">
+												 	<h4 style="color:#ec6090">미완료</h4>
+												</c:when>
+												<c:otherwise>
+													<h4>완료</h4>
+												</c:otherwise>
+											</c:choose>
+										</li>
 									</ul>
 							</div>
 								</c:forEach>
@@ -75,13 +84,20 @@
 					</div>
 					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
 		         	<div class="pagination">
-					  <a href="#">&laquo;</a>
-					  <c:forEach var="i" begin="1" end="5">
-					  	<a href="#"
-					  		<c:if test="${i eq 1 }">style="background-color: #e75e8d"</c:if>
-					  	>${i}</a>
+		         	 <c:if test="${pagingDto.startPage ne 1}">
+					  	<a href="#">&laquo;</a>
+					 </c:if>
+					  <c:forEach var="i" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
+					  	<a class="page" href="#"
+					  		<c:if test="${pagingDto.page eq i}">
+					  			style="background-color: #e75e8d"
+					  		</c:if>
+					  		>${i} <!-- a> -->
+					  	</a>
 					  </c:forEach>
-					  <a href="#">&raquo;</a>
+					  <c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+					  	<a href="#">&raquo;</a>
+					  </c:if>
 					</div>
 		         </div><!-- 페이징 끝  -->
 		         <!-- 모달 시작 -->
@@ -101,14 +117,15 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<textarea rows="1" cols="50" placeholder="제목을 입력하세요.(50자 이내)"></textarea>
-									<textarea rows="5" cols="50" placeholder="문의할 내용을 입력하세요." style="margin-top:5px;"></textarea>
+									<textarea id="qna_title" rows="1" cols="50" placeholder="제목을 입력하세요.(50자 이내)"></textarea>
+									<textarea id="qna_content" rows="5" cols="50" placeholder="문의할 내용을 입력하세요." style="margin-top:5px;"></textarea>
 								</div>
 								<div class="modal-footer">
-									<input type="radio" name="state"/> 공개
-									<input type="radio" name="state"/> 비공개
-									<button type="button" class="btn btn-primary" style="background-color:#ec6090">제출</button>
-									<button type="button" class="btn btn-secondary"
+									<div>
+									<input type="radio" name="radio" value="1"/> 공개
+									<input type="radio" name="radio" value="2"/> 비공개</div>
+									<button id="btnWrite" type="button" class="btn btn-primary" style="background-color:#ec6090">제출</button>
+									<button id="btnClose" type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
 								</div>
 							</div>
@@ -120,25 +137,83 @@
 			</div>
 		</div>
 	</div>
+
 <%@include file="../include/footer.jspf" %>
-	<script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	</script>
 	<script>
 	$(document).ready(function(){
 		// 제목 10자리 이상 ..표시
-		var title = $(".title").text().substring(0, 10) + "...";
-		$(".title").text(title);
+// 		if($(".title").text().length() >= 10){
+// 			var title = $(".title").text().substring(0, 10) + "...";			
+// 			$(".title").text(title);
+// 		}
+		// 제목을 눌렀을 때
+		$(".title").click(function(e){
+			e.preventDefault();
+			// 로그인한 아이디
+			var userid = "bbbb";
+			var writer = $(this).attr("data-userid");
+			var qna_state = $(this).attr("data-state");
+			var qna_no = $(this).attr("data-qna_no");
+			var page = $(this).attr("data-page");
+// 			console.log(qna_state);
+// 			console.log(qna_no);
+// 			console.log(page);
+			if((userid != writer || userid == writer) && qna_state == "1"){
+				location.href = "${contextPath}/movie/qna_board?writer=" + writer + "&qna_no=" + qna_no + "&page="+ page;
+			} else if(userid == writer &&  qna_state == "2") {
+				location.href = "${contextPath}/movie/qna_board?writer=" + writer + "&qna_no=" + qna_no + "&page="+ page;
+			} else{
+				alert("비공개 글 입니다");				
+			}
+		});
 		// 연필을 눌렀을 때 모달 띄우기
 		$(".main-button").click(function(e){
-		e.preventDefault();
-		$("#modal-422289").trigger("click");
+			e.preventDefault();
+			// 로그인 하지 않은 상태
+			
+			// 로그인한 상태
+			$("#modal-422289").trigger("click");
+		});
+		// 제출 버튼 눌렀을 때
+		$("#btnWrite").click(function(){
+			// 로그인한 아이디
+			var userid = "bbbb";
+			var qna_title = $("#qna_title").val();
+			//console.log(qna_title);
+			var qna_content = $("#qna_content").val();
+			//console.log(qna_content);
+			var qna_state = $("input[name='radio']:checked").val();
+			//console.log(qna_state);
+			var sData = {
+					"userid" : userid,
+					"qna_title" : qna_title,
+					"qna_content" : qna_content,
+					"qna_state" : qna_state
+			};
+			if(qna_title == null || qna_content == null ||qna_state == null){
+				alert("빈 칸을 모두 채워 주세요");
+				return;
+			}
+			var url = "${contextPath}/movie/insertQna";
+			$.post(url, sData, function(rData){
+				console.log(rData);
+				if(rData == "true"){
+					$("#btnClose").trigger("click");
+					location.href = "${contextPath}/movie/qna";
+				}
+			});
+		});
+		$(".page").click(function(e){
+			e.preventDefault();
+			var page = $(this).text();
+			console.log(page);
+			location.href = "${contextPath}/movie/qna?page=" + page;
 		});
 		// nav 해당 페이지 글색
 		$(".active").css("color", "#ec6090");

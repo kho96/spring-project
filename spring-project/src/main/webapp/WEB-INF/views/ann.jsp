@@ -58,16 +58,26 @@
 									<li><h4>조회수</h4></li>
 								</ul>
 							</div>
-								<c:forEach begin="1" end="10" var="i2">
+								<c:forEach items="${list}" var="annVo">
 							<div class="item">
 									<ul>
-										<li style="margin-left:10px;"><h4>${i2}</h4></li>
-										<li><h4>결제</h4></li>
+										<li style="margin-left:10px;"><h4>${annVo.ann_no}</h4></li>
+										<c:choose>
+											<c:when test="${annVo.ann_category == 1}">
+												<li><h4>결제</h4></li>									
+											</c:when>
+											<c:when test="${annVo.ann_category == 2}">
+												<li><h4>시설</h4></li>									
+											</c:when>
+											<c:when test="${annVo.ann_category == 3}">
+												<li><h4>주차</h4></li>									
+											</c:when>
+										</c:choose>
 										<li style="margin-right: 200px" id="title"><h4>
-												<a href="${contextPath}/movie/ann_board" class="title">인터넷 결제는 어떻게 하나요?</a>
+												<a href="${contextPath}/movie/ann_board?ann_no=${annVo.ann_no}&page=${pagingDto.page}" id="title">${annVo.ann_title}</a>
 											</h4></li>
-										<li><h4>2023/01/06</h4></li>
-										<li><h4>55</h4></li>
+										<li><h4>${annVo.ann_regdate}</h4></li>
+										<li><h4>${annVo.ann_viewcnt}</h4></li>
 									</ul>
 							</div>
 								</c:forEach>
@@ -75,19 +85,27 @@
 					</div>
 					<div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
 		         	<div class="pagination">
-					  <a href="#">&laquo;</a>
-					  <c:forEach var="i" begin="1" end="5">
-					  	<a href="#"
-					  		<c:if test="${i eq 1 }">style="background-color: #e75e8d"</c:if>
-					  	>${i}</a>
+		         	 <c:if test="${pagingDto.startPage ne 1}">
+					  	<a href="#">&laquo;</a>
+					 </c:if>
+					  <c:forEach var="i" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
+					  	<a class="page" href="#"
+					  		<c:if test="${pagingDto.page eq i}">
+					  			style="background-color: #e75e8d"
+					  		</c:if>
+					  		>${i} <!-- a> -->
+					  	</a>
 					  </c:forEach>
-					  <a href="#">&raquo;</a>
+					  <c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+					  	<a href="#">&raquo;</a>
+					  </c:if>
 					</div>
 		         </div><!-- 페이징 끝  -->
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -96,11 +114,19 @@
 	<script>
 	$(document).ready(function(){
 		// 제목 10자리 이상 ..표시
-		var title = $(".title").text().substring(0, 10) + "...";
-		$(".title").text(title);
+// 		if($("#title").text().length() >= 10){
+// 			var title = $("#title").text().substring(0, 10) + "...";			
+// 			$("#title").text(title);
+// 		}
+		console.log(title);
 		// nav 해당 페이지 글색
 		$(".active").css("color", "#ec6090");
+		$(".page").click(function(e){
+			e.preventDefault();
+			var page = $(this).text();
+			console.log(page);
+			location.href = "${contextPath}/movie/ann?page=" + page;
+		});
 	});
 	</script>
 <%@include file="../include/footer.jspf" %>
-	
