@@ -5,10 +5,6 @@
   
 <configuration>
 	<typeAliases>
-		<!-- 클래스 단위 -->
-<!-- 		<typeAlias type="com.kh.project.vo.UserVo" -->
-<!-- 			alias="UserVo"/> -->
-		<!-- 패키지 단위 -->
 		<package name="com.kh.project.vo"/>
 	</typeAliases>
 </configuration>

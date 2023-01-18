@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mappers.admin">
+	
+	<!-- 영화 관리 -->
+	<select id="getMovieList" resultType="MovieVo">
+		select * from tbl_movie
+		order by release_date desc
+	</select>
+	
+	<select id="getTitleList" resultType="String">
+		select movie_title from tbl_movie
+		order by release_date desc
+	</select>
+	
+	<select id="getMovieDetail" resultType="MovieVo">
+		select * from tbl_movie
+		where movie_no = #{movie_no}
+	</select>
+	
+	<insert id="insertMovie">
+		insert into tbl_movie(movie_no, movie_title, movie_story, posters, staff_list,
+							  genre, rating, runtime, release_date, score, status)
+		values(seq_movie_no.nextval, #{movie_title}, #{movie_story}, #{posters}, #{staff_list},
+		 							 #{genre}, #{rating}, #{runtime}, #{release_date}, #{score}, #{status})
+	</insert>
+	
+	<update id="updateMovie">
+		update tbl_movie set
+			movie_title = #{movie_title},
+			movie_story = #{movie_story},
+			staff_list = #{staff_list},
+			genre = #{genre},
+			runtime=  #{runtime},
+			release_date = #{release_date},
+			score = #{score},
+			status = #{status}
+		where movie_no = #{movie_no}
+	</update>
+	
+	<delete id="deleteMovie">
+		delete from tbl_movie
+		where movie_no = #{movie_no}
+	</delete>
+	
+	<!-- 상영관 -->
+	<select id="getCinemaList" resultType="String">
+		select * from cinema_list
+		order by cinema_name
+	</select>
+	
+	<insert id="insertCinemaName">
+		insert into cinema_list
+		values(#{cinema_name});
+	</insert>
+	
+</mapper>

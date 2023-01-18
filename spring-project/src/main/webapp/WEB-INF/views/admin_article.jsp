@@ -27,6 +27,7 @@ $(document).ready(function() {
 });
 </script>
 
+  <!-- 사이드바 시작 -->
   <div class="sidebar">
     <!-- 사이드 바 메뉴-->
     <div class="panel panel-info">
@@ -41,8 +42,11 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin" class="list-group-item list-group-item-action" aria-current="true">
              관리자 페이지
            </a>
-           <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
+           <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
+           </a>
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
            </a>
            <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action active">
              게시글 관리
@@ -55,6 +59,7 @@ $(document).ready(function() {
     </div>
      <!-- 사이드 바 메뉴 끝-->
   </div>
+  <!-- 사이드바 끝 -->
   
   <!-- 공지사항 관리 모달창 시작 -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

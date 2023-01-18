@@ -42,8 +42,11 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin" class="list-group-item list-group-item-action" aria-current="true">
              관리자 페이지
            </a>
-           <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
+           <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
+           </a>
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
            </a>
            <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
              게시글 관리

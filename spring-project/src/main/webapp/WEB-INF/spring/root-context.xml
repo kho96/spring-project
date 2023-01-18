@@ -9,37 +9,31 @@
 	<!-- 커넥션풀(DataSource) -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		id="dataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username"
-			value="MV"/>
-		<property name="password"
-			value="1234"/>
-	</bean>	
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.234:1521:xe"/>
+		<property name="username" value="kh302"/>
+		<property name="password" value="1234"/>
+	</bean>
 	
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
-		id="sqlSessionFactory">
-		<property name="dataSource"
-			ref="dataSource"/>
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml"/>
-		<property name="mapperLocations"
-			value="classpath:mappers/*-mapper.xml"/>
+	<!-- 객체를 참조할 때는 ref를 사용한다 
+		 위의 <bean id="dataSource">를 참조함 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mappers/*-mapper.xml"/>
 	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate"
 		destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory"
-			ref="sqlSessionFactory"/>
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="transactionManager"
+	<bean id="transactionManager" 
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>	
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
+  
 	<!-- @Transactional -->
 	<tx:annotation-driven/>
+  
 </beans>

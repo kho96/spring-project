@@ -1,5 +1,9 @@
 package com.kh.project.vo;
 
-public class SampleVo {
+import lombok.Data;
 
+@Data
+public class SampleVo {
+	private String teststr;
+	private int testnumber;
 }
