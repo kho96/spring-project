@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.ann">
+	<insert id="insert_article">
+		insert into tbl_ann(ann_no, ann_category, ann_title, ann_content)
+		values (seq_tbl_ann_no.nextval, #{ann_category}, #{ann_title}, #{ann_content})
+	</insert>
+	
+	<select id="getList" resultType="AnnVo"> <!-- pagingDto 추가 필요 -->
+		select * from (select rownum rnum, b.* from(select * from tbl_ann
+                		order by ann_no desc) b)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getDetail" resultType="AnnVo">
+		select * from tbl_ann
+		where ann_no = #{ann_no}
+	</select>
+	
+	<update id="modifyAnn">
+		update tbl_ann
+		set ann_category = #{ann_category}, ann_title = #{ann_title}, ann_content = #{ann_content}
+		where ann_no = #{ann_no}
+	</update>
+	
+	<delete id="deleteAnn">
+		delete tbl_ann
+		where ann_no = #{ann_no}
+	</delete>
+	
+	<!-- 게시글 count -->
+	<select id="getCount" resultType="int">
+		select count(*) from tbl_ann
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="updateViewCnt">
+		update tbl_ann
+		set ann_viewcnt = ann_viewcnt + 1
+		where ann_no = #{ann_no}
+	</update>
+</mapper>

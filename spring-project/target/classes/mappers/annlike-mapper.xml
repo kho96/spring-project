@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.annlike">
+	<insert id="insertHeart">
+		insert into tbl_ann_like
+		values (#{ann_no}, #{userid})
+	</insert>
+	<select id="getLikeCount" resultType="int">
+		select count(*) from tbl_ann_like
+		where ann_no = #{ann_no}
+	</select>
+	<select id="checkLike" resultType="int">
+		select count(*) from tbl_ann_like
+		where ann_no = #{ann_no}
+		and userid = #{userid}
+	</select>
+	<delete id="cancleLike">
+		delete tbl_ann_like
+		where ann_no = #{ann_no}
+		and userid = #{userid}
+	</delete>
+</mapper>

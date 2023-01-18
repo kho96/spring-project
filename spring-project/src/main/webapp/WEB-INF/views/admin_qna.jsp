@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header.jspf" %>
+<script>
+$(document).ready(function() {
+	$('.list-group > a').click(function(e){
+		$('.list-group > a').removeClass('active');
+		$(this).addClass('active');
+	});
+});
+</script>
 <div class="sidebar">
     <!-- 사이드 바 메뉴-->
     <div class="panel panel-info">
@@ -15,8 +23,11 @@
            <a href="${contextPath}/movie/admin" class="list-group-item list-group-item-action" aria-current="true">
              관리자 페이지
            </a>
-           <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
+           <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
+           </a>
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
            </a>
            <a href="${contextPath}/movie/admin/annList" class="list-group-item list-group-item-action">
              공지사항 관리
