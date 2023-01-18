@@ -5,8 +5,14 @@
   
 <mapper namespace="mappers.admin">
 	
+	<!-- 영화 관리 -->
 	<select id="getMovieList" resultType="MovieVo">
 		select * from tbl_movie
+		order by release_date desc
+	</select>
+	
+	<select id="getTitleList" resultType="String">
+		select movie_title from tbl_movie
 		order by release_date desc
 	</select>
 	
@@ -39,5 +45,16 @@
 		delete from tbl_movie
 		where movie_no = #{movie_no}
 	</delete>
+	
+	<!-- 상영관 -->
+	<select id="getCinemaList" resultType="String">
+		select * from cinema_list
+		order by cinema_name
+	</select>
+	
+	<insert id="insertCinemaName">
+		insert into cinema_list
+		values(#{cinema_name});
+	</insert>
 	
 </mapper>

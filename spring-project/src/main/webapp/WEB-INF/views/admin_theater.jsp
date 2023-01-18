@@ -9,23 +9,38 @@ $(document).ready(function() {
 	});
 	
 	var theater_name = "";
-	$("#select_theater").change(function() {
-		var select = $("#select_theater option:selected").val();
-		console.log(select);
-		
+	$("#select_cinema").change(function() {
+		var select = $("#select_cinema option:selected").val();
 		if (select == "add_theater") {
-			$("#add_theater").fadeIn(500);
+			$("#input_theater").fadeIn(500).val("");
+		} else {
+			$("#input_theater").fadeOut(500).val("");
 		}
-		theater_name = select;
 	});
 	
-	$("#btnSend").click(function() {
-		console.log("확인");
-		$("#theater").text(select);
+	$("#btnInsertCinema").click(function(e) {
+		e.preventDefault();
+		// 셀렉트에서 영화관 이름 선택
+		var name = $("#select_cinema option:selected").val();
+		// 영화관 추가하는 경우 input에서 영화관 이름 가져옴
+		if (name == "add_theater") {
+			name = $("#input_theater").val();
+			console.log("추가한 영화관 이름 : " + name);
+		}
+		$("#cinema_name").val(name); // select or input에서 받아온 영화관 이름을 hidden의 value로 설정
+		var movie = $("#cinema_movie").val();
+		
+		// 시간 포맷 처리
+		var input_time = $("#input_time").val(); // 2023-01-18T15:41
+		input_time = input_time.substr(2).split("T"); // 23-01-18
+		var date = input_time[0].replace("/-/g", "/"); // 23/01/18
+		var time = input_time[1]; // 15:41
+		var cinema_time = (date + " " + time); // 23/01/18 15:41
+		$("#cinema_time").val(cinema_time) // cinema_time의 value로 설정
+		$("#frmCinema").submit();
 	});
 });
 </script>
-
   <!-- 사이드바 시작 -->
   <div class="sidebar">
     <!-- 사이드 바 메뉴-->
@@ -61,36 +76,6 @@ $(document).ready(function() {
   <!-- 사이드바 끝 -->
   
   <div class="container">
-<!-- 모달창 시작 -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content custom-modal">
-      <div class="modal-header custom-modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">상영관</h4>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-area">
-          <form class="form-input" id="frmSearchTheater" action="#">
-            <select id="select_theater" class="form-control">
-              <option>울산 성남</option>
-              <option value="add_theater">상영관 추가하기</option>
-            </select>
-            <input type="text" id="add_theater" style="display: none; margin-top: 15px" placeholder="추가할 상영관 이름을 입력하세요.">
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer custom-modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-        <button type="button" id="btnSend" class="btn custom-btn">확인</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- 모달창 끝 -->
-  
     <!-- ***** 관리자 페이지 ***** -->
     <div class="row">
       <div class="col-12">
@@ -106,107 +91,62 @@ $(document).ready(function() {
                 </div>
 
                 <div class="row">
-                  <h4>영화 검색</h4>
                   <div class="form-area" style="margin-top:10px">
-                    <form class="form-input" id="frmSearchMovieApi" action="#">
+                    <form class="form-input" id="frmCinema" action="#" method="GET">
                         
+                      <!-- 상영관 선택 및 추가 -->
+					  <div class="row row-theater-top">
+					    <div class="col-md-12">
+					      <h4>상영관 선택 및 추가</h4>
+					      <select id="select_cinema" class="form-control">
+					        <option value="disabled" selected disabled hidden="">상영관 선택</option>
+					        <c:forEach items="${cinema_list}" var="cinema_list">
+					        <option>${cinema_list}</option>
+					        </c:forEach>
+					        <option value="add_theater">상영관 추가하기</option>
+					      </select>
+					      <input type="text" id="input_theater" placeholder="추가할 상영관을 입력하세요." style="display: none">
+					      <input type="hidden" id="cinema_name" name="cinema_name" value="">
+					    </div>
+					  </div>
+					  <!-- // 상영관 선택 및 추가 -->
+					  
+					  <!-- 영화 선택 -->
 					  <div class="row row-theater">
-					    <div class="col-md-2">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          상영관 선택 / 추가
-                          </button>
-					    </div>
-					    
-					    <div class="col-md-10">
-					      <input type="text" id="theater" placeholder="극장을 입력하세요.">
+					    <div class="col-md-12">
+					      <h4>영화 선택</h4>
+					      <select id="cinema_movie" class="form-control" name="cinema_movie">
+					        <option value="disabled" selected disabled hidden="">영화 선택</option>
+					        <c:forEach items="${title_list}" var="title_list">
+					        <option>${title_list}</option>
+					        </c:forEach>
+					      </select>
 					    </div>
 					  </div>
+					  <!-- // 영화 선택 -->
 					  
+					  <!-- 상영시간 선택 -->
 					  <div class="row row-theater">
-					    <div class="col-md-2">
-					      <button class="btn btn-primary">영화 선택</button>
-					    </div>
-					    
-					    <div class="col-md-10">
-					      <input type="text" placeholder="영화를 선택하세요.">
+					    <div class="col-md-12">
+					      <h4>상영 시간</h4>
+					      <input type="datetime-local" id="input_time">
+					      <input type="hidden" id="cinema_time" name="cinema_time" value="">
 					    </div>
 					  </div>
-					  
-					  <div class="row row-theater">
-					    <div class="col-md-2">
-					      <button class="btn btn-primary">상영시간</button>
-					    </div>
-					    
-					    <div class="col-md-10">
-					      <input type="text" placeholder="상영시간을 입력하세요.">
-					    </div>
-					  </div>
-					  
-					  <div class="row row-theater" style="margin-left: 1px;">
-					    <div class="col-md-2">
-	                      <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-					    </div>
-					    
-					    <div class="col-md-2">
-	                      <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-					    </div>
-					  </div>
-					  
-					<!-- 좌석선택  -->
+					  <!-- // 상영시간 선택 -->
+
+					  <!-- 좌석선택  -->
 					  <div class="row">
                	      <div id="div-seat" style="margin-top: 30px; width: 100%;">
-               	    	 <div class="heading-section">
-	                    	<div><h4>좌석선택</h4></div>
-	                    	<div style="text-align: right;"><!-- 좌석 상태 설명 -->
-	                    		<span style="color: white; margin-right: 10px">□ : 선택가능</span>
-	                    		<span style="color: red"> ▩ : 선택불가능</span>
-	                    	</div>
-	                  	  </div>
-               	    	<table border="2; solid" id="table-seat"
-               	    	style="width: 100%; color: white; text-align: center;">
-               	    		<tr>
-               	    			<td colspan="12"><h4>screen</h4></td>
-               	    		</tr>
-               	    		<c:forEach begin="1" end="7" var="w">
-	                   			<tr>
-	                   				<c:forEach begin="1" end="8" var="v">
-	                   					<td style="font-size: x-large;">
-	                   						<c:choose>
-	                   							<c:when test="${v%3 eq 0}">
-	                   								<a class="a-noseat" style="color: red" href="#">▩</a>
-	                   							</c:when>
-	                   							<c:otherwise>
-	                   								<a class="a-seat" data-seat="${w}열 ${v}번"
-	                   								data-check="false" href="#">□</a>
-	                   							</c:otherwise>
-	                   						</c:choose>
-	                   					</td>
-	                   				</c:forEach>	
-	                   			</tr>
-               	    		</c:forEach>	
-                    
-               	    	</table>
                	    	<div class="col-lg-12">
 	                      <div class="main-button" style="text-align: center; margin-top: 25px">
-	                        <a id="btn-payment" href="#">선택완료</a>
+	                        <a id="btnInsertCinema" href="#">선택완료</a>
 	                      </div>
 	                    </div>
                	      </div>
+               	      </div>
                	      <!-- 좌석선택 끝  -->
-               	    
-					  </div>
+               	      
                     </form>
                   </div>
                 </div>

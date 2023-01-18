@@ -18,6 +18,10 @@ public class AdminMovieService {
 		return dao.getMovieList();
 	}
 	
+	public List<String> getTitleList() {
+		return dao.getTitleList();
+	}
+	
 	public MovieVo getMovieDetail(int movie_no) {
 		return dao.getMovieDetail(movie_no);
 	}
@@ -32,5 +36,15 @@ public class AdminMovieService {
 	
 	public boolean deleteMovie(int movie_no) {
 		return dao.deleteMovie(movie_no);
+	}
+	
+	// 상영관 관리
+	public List<String> getCinemaList() {
+		return dao.getCinemaList();
+		
+	}
+	
+	public boolean insertCinemaName(String cinema_name) {
+		return dao.insertCinemaName(cinema_name);
 	}
 }

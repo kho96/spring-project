@@ -6,7 +6,7 @@
 
 .form-area .form-input input {
   width:100%;
-  background-color: #27292a;
+  /*background-color: #27292a;*/
   height: 46px;
   border-radius: 23px;
   border: 1px solid;
@@ -98,16 +98,12 @@
 	color: #e75e8d;
 }
 
+.row-theater-top {
+	margin-top: -10px;
+	line-height: 3.5;
+}
+
 .row-theater {
-	text-align: center;
-	margin-top: 20px
-}
-
-.row-theater div button {
-	width: 140px;
-}
-
-.row-theater div select {
-	text-align: center;
-	
+	margin-top: 20px;
+	line-height: 3.5;
 }

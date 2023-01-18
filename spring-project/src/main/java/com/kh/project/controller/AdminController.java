@@ -27,7 +27,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/theater_management", method = RequestMethod.GET)
-	public String showTheater() {
+	public String showTheater(Model model) {
+		List<String> cinema_list = service.getCinemaList();
+		List<String> title_list = service.getTitleList();
+		model.addAttribute("cinema_list", cinema_list);
+		model.addAttribute("title_list", title_list);
 		return "admin_theater";
 	}
 	

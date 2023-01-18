@@ -348,21 +348,9 @@ $(document).ready(function() {
                   </div>
                 </div>
 
-<!--                 <div class="row"> -->
-<!--                   <div class="main-border-button"> -->
-<!--                     <a href="#" data-toggle="modal" data-target="#exampleModal"> -->
-<!--                       영화 추가 하기 -->
-<!--                     </a> -->
-<!--                   </div> -->
-<!--                 </div> -->
-
               </div>
             </div>
-            
-<!--             영화코드(pk), 1영화제목, 1줄거리, 1포스터, 
-			1감독, 1출연진, 1등급, 평점, 배급사, 1러닝타임, 1상영일, 개봉(예정)여부, 장르입니당
-			
-			평점 배급사 개봉여부 -->
+
             <form class="form-input" id="frmInsertMovie" action="${contextPath}/movie/admin/movie_management/insert_run" method="POST" style="margin: 12px;">
             <div class="row">
               <div class="col-lg-6">
@@ -456,18 +444,8 @@ $(document).ready(function() {
           
           <div class="gaming-library">
             <div class="col-lg-12">
-            
-              <!-- 폼 테스트 -->
-              <div class="form-area">
-                <form class="form-input" action="#">
-                  <input type="text" placeholder="영화 제목 검색" id="searchText" name="searchKeyword" onkeypress="handle">
-                  <i class="fa fa-search"></i>
-                </form>
-              </div>
-              <!-- // 폼 테스트 -->
-              
-              <c:forEach items="${list}" var="list">
 
+              <c:forEach items="${list}" var="list">
               <div class="item"
               style="margin-top: 50px">
                 <ul>
@@ -484,21 +462,22 @@ $(document).ready(function() {
                     </div>
                   </li>
                 </ul>
-                
-
               </div>
               </c:forEach>
-              <div style="margin-top: 15px; text-align: center"> <!-- 페이징 시작  -->
-		         	<div class="pagination">
-					  <a href="#">&laquo;</a>
-					  <c:forEach var="i" begin="1" end="5">
-					  	<a href="#"
-					  		<c:if test="${i eq 1 }">style="background-color: #ec6090"</c:if>
-					  	>${i}</a>
-					  </c:forEach>
-					  <a href="#">&raquo;</a>
-					</div>
-		         </div><!-- 페이징 끝  -->
+              
+              <!-- 페이징 시작  -->
+              <div style="margin-top: 15px; text-align: center"> 
+		        <div class="pagination">
+				 <a href="#">&laquo;</a>
+				 <c:forEach var="i" begin="1" end="1">
+					<a href="#"
+						<c:if test="${i eq 1 }">style="background-color: #ec6090"</c:if>
+					>${i}</a>
+				 </c:forEach>
+				 <a href="#">&raquo;</a>
+				</div>
+		      </div>
+		      <!-- 페이징 끝  -->
 		         
             </div>
           </div>
