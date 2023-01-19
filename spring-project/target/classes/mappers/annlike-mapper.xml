@@ -10,7 +10,7 @@
 	<select id="getLikeCount" resultType="int">
 		select count(*) from tbl_ann_like
 		where ann_no = #{ann_no}
-	</select>
+	</select> 
 	<select id="checkLike" resultType="int">
 		select count(*) from tbl_ann_like
 		where ann_no = #{ann_no}

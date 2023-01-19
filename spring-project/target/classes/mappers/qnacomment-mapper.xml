@@ -20,4 +20,4 @@
 		delete tbl_qna_comment
 		where qna_no = #{qna_no}
 	</delete>
-</mapper>
+</mapper> 
