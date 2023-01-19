@@ -148,15 +148,21 @@
 	<script>
 	$(document).ready(function(){
 		// 제목 10자리 이상 ..표시
-// 		if($(".title").text().length() >= 10){
-// 			var title = $(".title").text().substring(0, 10) + "...";			
-// 			$(".title").text(title);
-// 		}
+		var title = $(".title");
+		for (i = 0 ; i < title.length; i++){
+			//console.log(title[i].innerText.substring(0,10));	
+			if(title[i].innerText.length > 10){
+				//title[i].text(title[i].innerText.substring(0,10)) + "...";
+				$(".item").find("a").eq(i).text(title[i].innerText.substring(0,10) + "...");
+			}
+			$(".item").find("a").eq(i).text(title[i].innerText);
+		}
 		// 제목을 눌렀을 때
 		$(".title").click(function(e){
 			e.preventDefault();
 			// 로그인한 아이디
-			var userid = "bbbb";
+			var userid = "${userVo.userid}";
+			console.log("userid:", userid);
 			var writer = $(this).attr("data-userid");
 			var qna_state = $(this).attr("data-state");
 			var qna_no = $(this).attr("data-qna_no");
@@ -164,26 +170,35 @@
 // 			console.log(qna_state);
 // 			console.log(qna_no);
 // 			console.log(page);
+			if(userid == null || userid == ""){
+				alert("로그인 해주세요");
+				location.href = "${contextPath}/movie/login";
+				return;
+			}
 			if((userid != writer || userid == writer) && qna_state == "1"){
 				location.href = "${contextPath}/movie/qna_board?writer=" + writer + "&qna_no=" + qna_no + "&page="+ page;
 			} else if(userid == writer &&  qna_state == "2") {
 				location.href = "${contextPath}/movie/qna_board?writer=" + writer + "&qna_no=" + qna_no + "&page="+ page;
-			} else{
+			} else if(userid != writer && qna_state == "2"){
 				alert("비공개 글 입니다");				
 			}
 		});
 		// 연필을 눌렀을 때 모달 띄우기
 		$(".main-button").click(function(e){
 			e.preventDefault();
+			var userid = "${userVo.userid}";
 			// 로그인 하지 않은 상태
-			
+			if(userid == null || userid == ""){
+				alert("로그인 해주세요");
+				location.href = "${contextPath}/movie/login";
+			}
 			// 로그인한 상태
 			$("#modal-422289").trigger("click");
 		});
 		// 제출 버튼 눌렀을 때
 		$("#btnWrite").click(function(){
 			// 로그인한 아이디
-			var userid = "bbbb";
+			var userid = "${userVo.userid}";
 			var qna_title = $("#qna_title").val();
 			//console.log(qna_title);
 			var qna_content = $("#qna_content").val();

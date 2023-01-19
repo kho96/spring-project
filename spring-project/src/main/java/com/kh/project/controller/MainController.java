@@ -78,8 +78,9 @@ public class MainController {
 		String loginid= request.getParameter("loginid");
 		String loginpw= request.getParameter("loginpw");
 		UserVo vo = userService.getUserById(loginid);
-		System.out.println("아디"+loginid);
-		System.out.println("비번"+loginpw);
+		System.out.println("userVo:" + vo);
+		System.out.println("�븘�뵒"+loginid);
+		System.out.println("鍮꾨쾲"+loginpw);
 		System.out.println(vo);
 		String page= "";
 		if(loginid.equals(vo.getUserid()) && loginpw.equals(vo.getUserpw())) {
@@ -87,19 +88,20 @@ public class MainController {
 			if (vo.getMaster().equals("T")) {
 				session.setAttribute("loginResult", "admin");
 				page = "redirect:/movie/admin";
-				System.out.println("관리자");
+				System.out.println("愿�由ъ옄");
 			} else {
 				session.setAttribute("loginResult","member");
-				System.out.println("멤버");
+				System.out.println("硫ㅻ쾭");
 			page = "redirect:/movie/main";
-			System.out.println("성공");
+			System.out.println("�꽦怨�");
 			System.out.println(session.getAttribute("loginResult"));
 			}
 		} else {
 			session.setAttribute("loginResult","guest");
 			page = "redirect:/movie/login";
-			System.out.println("실패");
+			System.out.println("�떎�뙣");
 		}
+		session.setAttribute("userVo", vo);
 		return page;
 	}
 	
@@ -131,10 +133,10 @@ public class MainController {
 		String page = "";
 		if (result) {
 			rttr.addFlashAttribute("register_result", "success");
-			page = "redirect:/movie/login"; // 로그인폼
+			page = "redirect:/movie/login"; // 濡쒓렇�씤�뤌
 		} else {
 			rttr.addFlashAttribute("register_result", "fail");
-			page = "redirect:/movie/register"; // 회원가입폼
+			page = "redirect:/movie/register"; // �쉶�썝媛��엯�뤌
 		}
 		
 		return page;
@@ -212,10 +214,17 @@ public class MainController {
 		return "qna";
 	}
 	@RequestMapping(value = "/qna_board", method = RequestMethod.GET)
-	public String showQna_board(String writer, int qna_no, Model model, int page) {
+	public String showQna_board(String writer, int qna_no, Model model, int page, HttpSession session) {
 		QnaVo qnaVo = qnaService.showQnaDetail(qna_no);
-		// �α��� ���̵�� ���ؾ���
-		qnaVo.setUserid("bbbb");
+		// 로그인 아이디랑 비교해야함
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		if(userVo == null) {
+			System.out.println("로그인 필요함");
+			return "login";
+		}
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		qnaVo.setUserid(userid);
 		System.out.println("qnaVo: " + qnaVo);
 		QnaCommentVo qnaCommentVo = qnaCommentService.showQnaComment(qna_no);
 		model.addAttribute("qnaVo", qnaVo);
@@ -227,9 +236,12 @@ public class MainController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/modifyQnaContent", method = RequestMethod.POST)
-	public String modifyQnaContent(QnaVo qnaVo) {
-		// �α��� ���̵�� ��
-		qnaVo.setUserid("bbbb");
+	public String modifyQnaContent(QnaVo qnaVo, HttpSession session) {
+		// 로그인 아이디랑 비교해야함
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		qnaVo.setUserid(userid);
 		System.out.println("Md_qnaVo: " + qnaVo);
 		boolean result = qnaService.modifyQnaContent(qnaVo);
 		return String.valueOf(result);
@@ -237,8 +249,12 @@ public class MainController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/deleteQna", method = RequestMethod.POST)
-	public String deleteQna(QnaVo qnaVo) {
-		qnaVo.setUserid("bbbb");
+	public String deleteQna(QnaVo qnaVo, HttpSession session) {
+		// 로그인 아이디랑 비교해야함
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		qnaVo.setUserid(userid);
 		System.out.println("delete:" + qnaVo);
 		boolean result = qnaService.deleteQna(qnaVo);
 		return String.valueOf(result);
@@ -254,35 +270,49 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/ann_board", method = RequestMethod.GET)
-	public String showAnn_board(int ann_no, Model model, int page, AnnLikeVo annLikeVo) {
+	public String showAnn_board(int ann_no, Model model, int page, AnnLikeVo annLikeVo, HttpSession session) {
 		AnnVo annVo = annService.getDetail(ann_no);
-		int likeCount = annLikeService.getLikeCount(ann_no);
-		// ���̵�
-		annLikeVo.setUserid("bbbb");
-		boolean likeResult = annLikeService.checkLike(annLikeVo);
-		Map<String, Object> likeMap = new HashMap<>();
-		likeMap.put("likeCount", likeCount);
-		likeMap.put("likeResult", likeResult);
 		model.addAttribute("annVo", annVo);
 		model.addAttribute("page", page);
+		Map<String, Object> likeMap = new HashMap<>();
+		int likeCount = annLikeService.getLikeCount(ann_no);
+		System.out.println("likeCount:" + likeCount);
+		model.addAttribute("likeCount", likeCount);
+		// 로그인 아이디랑 비교해야함
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		if(userVo == null) {
+			return "ann_board";
+		}
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		annLikeVo.setUserid(userid);
+		boolean likeResult = annLikeService.checkLike(annLikeVo);
+		likeMap.put("likeVo", annLikeVo);
+		likeMap.put("likeResult", likeResult);
 		model.addAttribute("likeMap", likeMap);
-		return "ann_board";
+		return "ann_board";	
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/sendLike", method = RequestMethod.POST)
-	public String sendLike(AnnLikeVo annLikeVo) {
-		// ���̵�
-		annLikeVo.setUserid("bbbb");
-		System.out.println("sendLikeVo:" + annLikeVo);
+	public String sendLike(AnnLikeVo annLikeVo, HttpSession session) {
+		// 아이디
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		annLikeVo.setUserid(userid);
 		boolean result = annLikeService.insertHeart(annLikeVo);
 		return String.valueOf(result);
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/likeCancle", method = RequestMethod.POST)
-	public String likeCancle(AnnLikeVo annLikeVo) {
-		// ���̵�
-		annLikeVo.setUserid("bbbb");
+	public String likeCancle(AnnLikeVo annLikeVo, HttpSession session) {
+		// 아이디
+		UserVo userVo = (UserVo)session.getAttribute("userVo");
+		String userid = userVo.getUserid();
+		System.out.println("userId: " + userid);
+		annLikeVo.setUserid(userid);
 		System.out.println("likeCancle:" + annLikeVo);
 		boolean result = annLikeService.cancleLike(annLikeVo);
 		return String.valueOf(result);

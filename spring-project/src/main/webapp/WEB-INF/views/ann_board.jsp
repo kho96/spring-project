@@ -5,9 +5,19 @@
 $(document).ready(function(){
 	var isLike = "${likeMap.likeResult}";
 	console.log("isLike", isLike);
+	if(isLike == "true"){
+		$("#innerHeart").css("color", "#FF0000");
+	}
 	// 하트 버튼을 눌렀을 때
 	$("#btnHeart").click(function(e){
 		e.preventDefault();
+		var userid = "${userVo.userid}";
+		console.log("userid:" , userid);
+		if(userid == null || userid == ""){
+			alert("로그인 해주세요");
+			location.href = "${contextPath}/movie/login";
+			return;
+		}
 		var ann_no = $(this).attr("data-ann_no");
 		var sData = {
 				"ann_no":ann_no
@@ -22,7 +32,7 @@ $(document).ready(function(){
 			url = "${contextPath}/movie/sendLike";
 		} 
 		$.post(url, sData, function(rData){
-			$.get("${contextPath}/movie/getLikeCount", {"ann_no":ann_no}, function(rData){
+			$.get("${contextPath}/movie/getLikeCount", {"ann_no":ann_no, "userid" : userid}, function(rData){
 				var count = $("#likeCount").text();
 				if(isLike == "true"){
 					isLike = "false";
@@ -88,7 +98,7 @@ $(document).ready(function(){
 				<div class="col-lg-12" style="text-align:center">
 						<a href="#" data-ann_no="${annVo.ann_no}" class="btn" style="background-color:#e75e8d" id="btnHeart">
 							<i class="fa fa-heart fa-2x" aria-hidden="true" id="innerHeart"></i>
-							<span id="likeCount" class="badge" style="font-size:20px">${likeMap.likeCount}</span>
+							<span id="likeCount" class="badge" style="font-size:20px">${likeCount}</span>
 						</a>
 					<button type="button" class="btn btn-lg btnModifyOk" style="background-color:#FFF0F5; color:#ccc; display:none;">완료</button>
 				</div>
