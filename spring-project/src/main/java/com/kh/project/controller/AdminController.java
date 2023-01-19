@@ -138,6 +138,8 @@ public class AdminController {
 
 	@RequestMapping(value = "movie_management/insert_run", method = RequestMethod.POST)
 	public String insertMovie(MovieVo movieVo) {
+		String score = movieVo.getScore();
+		if (score == null || score.equals("")) movieVo.setScore("집계중");
 		System.out.println("[insertMovie] movieVo : " + movieVo);
 		service.insertMovie(movieVo);
 		return "redirect:/movie/admin/movie_management";

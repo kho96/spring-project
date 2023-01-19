@@ -453,11 +453,11 @@ $(document).ready(function() {
               style="margin-top: 50px">
                 <ul>
                   <li><img src="${list.posters}" alt="" class="templatemo-item"></li>
-                  <li><h4>제목</h4><span>${list.movie_title}</span></li>
+                  <li style="margin-right: 50px;"><h4>제목</h4><span>${list.movie_title}</span></li>
                   <li><h4>상영일</h4><span>${list.release_date }</span></li>
                   <li><h4>상영시간</h4><span>${list.runtime}</span></li>
                   <li><h4>상태</h4><span>${list.status}</span></li>
-                  <li>
+                  <li style="text-align: center;position: absolute;width: 150px;">
                     <div class="main-border-button">
                       <a href="#" class="modifyMovie" data-toggle="modal" data-target="#exampleModal" data-movie-no="${list.movie_no}">
                       관리

@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.kh.project.service.UserService;
+
 import com.kh.project.service.AnnLikeService;
 import com.kh.project.service.AnnService;
+import com.kh.project.service.MainMovieService;
 import com.kh.project.service.QnaCommentService;
 import com.kh.project.service.QnaService;
-import com.kh.project.service.SampleService;
+import com.kh.project.service.UserService;
 import com.kh.project.vo.AnnLikeVo;
 import com.kh.project.vo.AnnVo;
+import com.kh.project.vo.MovieVo;
 import com.kh.project.vo.PagingDto;
 import com.kh.project.vo.QnaCommentVo;
 import com.kh.project.vo.QnaVo;
@@ -33,16 +33,19 @@ import com.kh.project.vo.UserVo;
 @RequestMapping(value = "/movie/*")
 public class MainController {
 	
-	@Autowired
-	private UserService userService;
-	
+	@Autowired private UserService userService;
 	@Autowired private AnnService annService;
 	@Autowired private QnaService qnaService;
 	@Autowired private QnaCommentService qnaCommentService;
 	@Autowired private AnnLikeService annLikeService;
+	@Autowired private MainMovieService movieService;
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String showMain() {
+	public String showMain(Model model) {
+		List<MovieVo> movie_list = movieService.getMovies();
+		List<MovieVo> pre_movie_list = movieService.getPreMovies();
+		model.addAttribute("movie_list", movie_list);
+		model.addAttribute("pre_movie_list", pre_movie_list);
 		return "main";
 	}
 
@@ -52,7 +55,9 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String showMovieDetail() {
+	public String showMovieDetail(int movie_no, Model model) {
+		MovieVo vo = movieService.getDetail(movie_no);
+		model.addAttribute("movieVo", vo);
 		return "movie_detail";
 	}
 
@@ -214,7 +219,7 @@ public class MainController {
 	@RequestMapping(value = "/qna_board", method = RequestMethod.GET)
 	public String showQna_board(String writer, int qna_no, Model model, int page) {
 		QnaVo qnaVo = qnaService.showQnaDetail(qna_no);
-		// ·Î±×ÀÎ ¾ÆÀÌµð¶û ºñ±³ÇØ¾ßÇÔ
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
 		qnaVo.setUserid("bbbb");
 		System.out.println("qnaVo: " + qnaVo);
 		QnaCommentVo qnaCommentVo = qnaCommentService.showQnaComment(qna_no);
@@ -228,7 +233,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value = "/modifyQnaContent", method = RequestMethod.POST)
 	public String modifyQnaContent(QnaVo qnaVo) {
-		// ·Î±×ÀÎ ¾ÆÀÌµð¶û ºñ±³
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½
 		qnaVo.setUserid("bbbb");
 		System.out.println("Md_qnaVo: " + qnaVo);
 		boolean result = qnaService.modifyQnaContent(qnaVo);
@@ -257,7 +262,7 @@ public class MainController {
 	public String showAnn_board(int ann_no, Model model, int page, AnnLikeVo annLikeVo) {
 		AnnVo annVo = annService.getDetail(ann_no);
 		int likeCount = annLikeService.getLikeCount(ann_no);
-		// ¾ÆÀÌµð
+		// ï¿½ï¿½ï¿½Ìµï¿½
 		annLikeVo.setUserid("bbbb");
 		boolean likeResult = annLikeService.checkLike(annLikeVo);
 		Map<String, Object> likeMap = new HashMap<>();
@@ -272,7 +277,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value = "/sendLike", method = RequestMethod.POST)
 	public String sendLike(AnnLikeVo annLikeVo) {
-		// ¾ÆÀÌµð
+		// ï¿½ï¿½ï¿½Ìµï¿½
 		annLikeVo.setUserid("bbbb");
 		System.out.println("sendLikeVo:" + annLikeVo);
 		boolean result = annLikeService.insertHeart(annLikeVo);
@@ -281,7 +286,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value = "/likeCancle", method = RequestMethod.POST)
 	public String likeCancle(AnnLikeVo annLikeVo) {
-		// ¾ÆÀÌµð
+		// ï¿½ï¿½ï¿½Ìµï¿½
 		annLikeVo.setUserid("bbbb");
 		System.out.println("likeCancle:" + annLikeVo);
 		boolean result = annLikeService.cancleLike(annLikeVo);
@@ -299,5 +304,4 @@ public class MainController {
 	public String showFre_qna() {
 		return "fre_qna";
 	}
-	
 }
