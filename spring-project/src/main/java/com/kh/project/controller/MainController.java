@@ -390,4 +390,10 @@ public class MainController {
 	public String showFre_qna() {
 		return "fre_qna";
 	}
+	
+	@RequestMapping(value = "/guest", method = RequestMethod.GET)
+	public String guestApi() {
+		return "guestApi";
+	}
+	
 }
