@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.kh.project.service.UserService;
+
 import com.kh.project.service.AnnLikeService;
 import com.kh.project.service.AnnService;
+import com.kh.project.service.MainMovieService;
 import com.kh.project.service.QnaCommentService;
 import com.kh.project.service.QnaService;
-import com.kh.project.service.SampleService;
+import com.kh.project.service.UserService;
 import com.kh.project.vo.AnnLikeVo;
 import com.kh.project.vo.AnnVo;
+import com.kh.project.vo.MovieVo;
 import com.kh.project.vo.PagingDto;
 import com.kh.project.vo.QnaCommentVo;
 import com.kh.project.vo.QnaVo;
@@ -32,18 +32,26 @@ import com.kh.project.vo.UserVo;
 @Controller
 @RequestMapping(value = "/movie/*")
 public class MainController {
-	 
-	@Autowired
-	private UserService userService;
-	
+
+	@Autowired private UserService userService;
 	@Autowired private AnnService annService;
 	@Autowired private QnaService qnaService;
 	@Autowired private QnaCommentService qnaCommentService;
 	@Autowired private AnnLikeService annLikeService;
+	@Autowired private MainMovieService movieService;
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String showMain() {
+	public String showMain(Model model) {
+		List<MovieVo> movie_list = movieService.getMovies();
+		List<MovieVo> pre_movie_list = movieService.getPreMovies();
+		model.addAttribute("movie_list", movie_list);
+		model.addAttribute("pre_movie_list", pre_movie_list);
 		return "main";
+	}
+	
+	@RequestMapping(value = "/kakao", method = RequestMethod.GET)
+	public String showKakao() {
+		return "kakao";
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -52,7 +60,9 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String showMovieDetail() {
+	public String showMovieDetail(int movie_no, Model model) {
+		MovieVo vo = movieService.getDetail(movie_no);
+		model.addAttribute("movieVo", vo);
 		return "movie_detail";
 	}
 
@@ -74,32 +84,33 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String LoginForm(HttpSession session, HttpServletRequest request) {
+	public String LoginForm(HttpSession session, HttpServletRequest request , RedirectAttributes rttr) {
 		String loginid= request.getParameter("loginid");
 		String loginpw= request.getParameter("loginpw");
 		UserVo vo = userService.getUserById(loginid);
-		System.out.println("userVo:" + vo);
-		System.out.println("�븘�뵒"+loginid);
-		System.out.println("鍮꾨쾲"+loginpw);
+		List<UserVo> list = userService.getUserList();
 		System.out.println(vo);
 		String page= "";
-		if(loginid.equals(vo.getUserid()) && loginpw.equals(vo.getUserpw())) {
+		
+		if (vo == null) {
+			rttr.addFlashAttribute("loginResult", "fail");
+			page = "redirect:/movie/login";
+		} else if(loginid.equals(vo.getUserid()) && loginpw.equals(vo.getUserpw())) {
 			System.out.println(vo.getMaster());
 			if (vo.getMaster().equals("T")) {
 				session.setAttribute("loginResult", "admin");
 				page = "redirect:/movie/admin";
 				System.out.println("愿�由ъ옄");
 			} else {
+				session.setAttribute("vo", vo);
 				session.setAttribute("loginResult","member");
 				System.out.println("硫ㅻ쾭");
 			page = "redirect:/movie/main";
-			System.out.println("�꽦怨�");
 			System.out.println(session.getAttribute("loginResult"));
 			}
 		} else {
 			session.setAttribute("loginResult","guest");
 			page = "redirect:/movie/login";
-			System.out.println("�떎�뙣");
 		}
 		session.setAttribute("userVo", vo);
 		return page;
@@ -111,10 +122,12 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerRun(UserVo vo, RedirectAttributes rttr, HttpServletRequest request) {
+	public String registerRun(HttpSession Session,Model model, UserVo vo, RedirectAttributes rttr, HttpServletRequest request) {
 
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
+		String gender = request.getParameter("gender");
+		String pic = "";
 		if(0<Integer.parseInt(month) && Integer.parseInt(month)<10) {
 			month = "0"+month;
 		}
@@ -122,8 +135,15 @@ public class MainController {
 		if(0<Integer.parseInt(day) && Integer.parseInt(day)<10) {
 			day = "0"+day;
 		}
+		if(gender.equals("M")) {
+			pic = "/assets/images/man.png";
+		} else if (gender.equals("F")) {
+			pic = "/assets/images/Female.png";
+		}
+		
 		String userBirth = year+"-"+month+"-"+day;
 		vo.setUserbirth(userBirth);
+		vo.setUserpic(pic);
 //		System.out.println("year"+year);
 //		System.out.println("month"+month);
 //		System.out.println("day"+day);
@@ -150,6 +170,46 @@ public class MainController {
 		System.out.println(count);
 		return String.valueOf(count);
 	}
+	
+	@RequestMapping(value = "/mypage_detail", method = RequestMethod.GET)
+	public String showMypageDetail() {
+		return "mypage_detail";
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String runModify(UserVo vo, HttpServletRequest request, HttpSession Session) {
+		System.out.println("수정 시작 ," + vo.toString());
+		String userpic = request.getParameter("userpic");
+		String usergrade = request.getParameter("usergrade");
+		String userno = request.getParameter("userno");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String day = request.getParameter("day");
+		if(0<Integer.parseInt(month) && Integer.parseInt(month)<10) {
+			month = "0"+month;
+		}
+		if(0<Integer.parseInt(day) && Integer.parseInt(day)<10) {
+			day = "0"+day;
+		}
+		String userBirth = year+"-"+month+"-"+day;
+		vo.setUserbirth(userBirth);
+		vo.setUserpic(userpic);
+		vo.setUsergrade(usergrade);
+		vo.setUser_no(userno);
+		boolean result = userService.userModify(vo);
+		Session.setAttribute("vo", vo);
+		System.out.println("modify,vo"+ vo);
+		return "redirect:/movie/mypage";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String runDelete(HttpServletRequest request) {
+		String userid = request.getParameter("userid");
+		boolean result = userService.userDelete(userid);
+		System.out.println("delresult"+result);
+		return "redirect:/movie/main";
+	}
+
   
 	@RequestMapping(value = "/event", method = RequestMethod.GET)
 	public String showEventList() {
@@ -181,7 +241,8 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String showMypage() {
+	public String showMypage(Model model,HttpSession Session) {
+		
 		return "mypage";
 	}
 
@@ -329,5 +390,4 @@ public class MainController {
 	public String showFre_qna() {
 		return "fre_qna";
 	}
-	
 }

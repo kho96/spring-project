@@ -29,7 +29,29 @@
 				  $(this).text("더 보기");
 			  }
 		  }); 
-	  } 
+	  }
+	  
+	  // movieVo
+	  var list = "${movieVo.staff_list}";
+	  list = list.split(', ');
+	  var director = list[0].substr(5); // 감독
+	  var staff_list = list[1].substr(6); // 출연진
+	  $("#director").text('감독  ' + director);
+	  
+	  // 예약 날짜 구하기
+	  var date = "${movieVo.release_date}";
+	  date = date.split(" ");
+	  var year = date[0].substr(0, 4);
+	  var month = date[1].substr(0, 2);
+	  var date = date[2].substr(0, 2);
+	  date = year + "-" + month + "-" + date;
+	  var get_date = new Date(date);
+	  var today = new Date();
+	  console.log(date);
+	  console.log(today);
+	  today.setDate(today.getDate() - get_date);
+	  console.log(today);
+	  
 });
 </script>
 
@@ -44,21 +66,27 @@
               <div class="main-profile ">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="/assets/images/mov03.jpg" alt="" style="border-radius: 23px;">
+                    <img src="${movieVo.posters}" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-8">
                     <div class="main-info header-text">
-                      <span>현재상영중</span><!--상영 예정작: <span>예매 중</span><span>d-10</span>  -->
-                      <h2>써니</h2><br>
-                      <h6>감독  강형철</h6>
-                      <h6>장르  코미디, 드라마</h6>
-                      <h6>국가  대한민국</h6>
+                      <c:choose>
+                        <c:when test="${movieVo.status eq '상영중'}">
+                          <span>현재상영중</span>
+                        </c:when>
+                        <c:when test="${movieVo.status eq '상영예정'}">
+                          <span>예매 중 d-10</span>
+                        </c:when>
+                      </c:choose>
+                      <h2>${movieVo.movie_title}</h2><br>
+                      <h6 id="director"></h6>
+                      <h6>장르  ${movieVo.genre}</h6>
+<!--                       <h6>국가  대한민국</h6> -->
                       <h6>등급  15세</h6>
-                      <h6>개봉  2011.05.04</h6>
-                      <h6>타입  2D</h6>
-                      <h6>러닝타임  124분</h6>
-                      <h6>배급사  CJ E&M Pictures</h6><br>
-                      <h6>7공주 써니의 멤버였던 주인공 나미가 어른이 되어 옛 친구들을 찾아 나서는 이야기와, 어릴 적 나미가 7공주 써니의 멤버였을 때의 이야기를 복합적으로 다루고 있다.</h6>
+                      <h6>개봉  ${movieVo.release_date}</h6>
+<!--                       <h6>타입  2D</h6> -->
+                      <h6>러닝타임  ${movieVo.runtime }</h6>
+<!--                       <h6>배급사  CJ E&M Pictures</h6><br> -->
                       <div class="main-border-button">
                         <a href="booking">예매하기</a> <!-- 상영 예정작: 날짜에 따라 없을 수도.. -->
                       </div> <br>
@@ -75,25 +103,27 @@
                   <div class="col-lg-12">
                     <div class="clips">
                       <div class="row">
+                      
                         <div class="col-lg-12">
                           <div class="heading-section">
                             <h4><em>줄거리</em></h4>
                           </div>
                         </div>
+                        
                         <div class="col-lg-12 story"> <!-- div -->
-                            <h5 id="content">2010년[5], 잘나가는 사업가 남편과 고등학생 딸을 둔 주부 임나미. 남부러울 것 하나 없는 화려한 인생이지만, 그녀는 자신의 삶에 2%의 무언가가 부족하다고 생각했다. 그러던 어느 날, 친정어머니 문병차 병원에 들렀다가 '하춘화' 라는 이름이 새겨진 병실을 발견했다. 병실에 입원한 춘화는 바로 나미의 고등학교 시절 절친한 친구. 학창시절만 해도 대장 노릇을 톡톡히 하던 그녀였지만, 성인이 된 지금은 폐암 말기로 길어야 2개월밖에 못 사는 상황이었다. 춘화는 "세상을 떠나기 전, 흩어진 친구들을 다시 만나는 게 소원"이라고 했고, 나미는 그녀의 소원대로 흥신소를 동원해 연락이 끊긴 친구들을 찾아다니는 사이, 까맣게 잊고 있던 25년 전의 과거를 떠올린다.
-
-1986년, 전라남도 보성군 벌교읍의 새벌교고등학교에서 전학을 온 18살 임나미. 하지만 극도의 긴장감과 툭하면 터져나오는 전라도 사투리 때문에 첫날부터 날라리들의 놀림감이 되었다. 바로 그때 이런 자신을 반갑게 맞아주는 친구가 하나 있었으니, 그 친구가 바로 춘화. 이후 춘화의 소개로 그녀의 패거리 멤버들을 소개받는다. 욕쟁이 진희, 못난이 장미, 왈가닥 금옥, 4차원 복희, 얼음공주 수지까지. 경쟁써클 '소녀시대' 와의 맞짱 대결에서 할머니께 전수받은 사투리 욕 신공[6][7]으로 상대방을 단숨에 KO시키는 대활약을 펼쳤다. 이때부터 다른 친구들은 모두 나미를 열렬히 반겼지만 유독 수지만큼은 나미를 철저하게 경멸했다.
-
-하지만 곧 수지하고도 오해를 푼 뒤부터는 전보다 훨씬 더 친구들이랑 가까워졌고, 다같이 학교 축제에 선보일 학예회 무대를 연습하며 즐거운 시간을 보내고 있었다. 그러나 축제 당일, 뜻밖의 사고가 터지는 바람에 무대 근처에도 가지 못했고, 모든 멤버들이 각기 다른 곳으로 흩어지고 만 것이다. 그리고 시간이 흘러 삶에 치이느라 서로를 새까맣게 잊은 것이었다.</h5>
-                          </div> <!-- div -->
+                            <h5 id="content">${movieVo.movie_story}</h5>
                         </div>
-                        <div class="col-lg-12 col-sm-6">
-                        	<h6><a href="#" id="a_more">더 보기</a></h6>
-                        </div>
+                        
                       </div>
+                      
+                      <div class="col-lg-12 col-sm-6">
+                        <h6><a href="#" id="a_more">더 보기</a></h6>
+                      </div>
+                      
                     </div>
                   </div>
+                </div>
+                
                 </div>
               </div>
             </div>

@@ -95,8 +95,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 		var result = "${loginResult}";
 		console.log('결과 : ' + result);
 		if (result == "member") {
-			
-			console.log("실행됨")
+			console.log("실행됨");
 			$("#mypage").css("display","block");
 			$("#login").css("display","none");
 		}
@@ -138,13 +137,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="${contextPath}/movie/event" style="color: #e75e8d">이벤트</a></li>
                         <li><a href="${contextPath}/movie/store" style="color: #e75e8d">스토어</a></li>
                         <li><a href="${contextPath}/movie/fre_qna" style="color: #e75e8d">고객센터 </a></li>
-                        <div id="mypage" style="display:none">
-	                        <li><a href="${contextPath}/movie/mypage" style="background-color: #e75e8d; color: #fff;">Mypage
+                        <form action="mypage" name="mypage" id="mypage" style="display:none" method="post">
+	                        <li><a href="${contextPath}/movie/mypage" style="background-color: #e75e8d; color: #fff;" id="mypage">Mypage
 	                        <img src="/assets/images/profile-header.jpg" alt="mypage" style="max-width: 30px;
 																							  border-radius: 50%;
 																							  margin-left: 5px;"></a></li>
 							<li><a href="logout" alt="logout">로그아웃</a></li>
-                        </div>
+						</form>	
+                        
                         <li><a href="${contextPath}/movie/login" style="background-color: #e75e8d; color: #fff;" id="login">로그인
                         <img src="/assets/images/profile-header.jpg" alt="login"></a></li>
                         

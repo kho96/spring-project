@@ -43,8 +43,7 @@ $(document).ready(function(){
 	      toggle_command = false;
 	      console.log(toggle_command)
 	   });
-	   
-
+});
 </script>
 <div class="container">
     <div class="row">
@@ -92,19 +91,21 @@ $(document).ready(function(){
                 <div id="now">
                  <div class="owl-features owl-carousel">
                	 <!-- 영화 한 편 시작-->
+               	 	  <c:forEach items="${movie_list}" var="movie_list">
 	                  <div class="item">
 	                    <div class="thumb">
-	                      <a href="${contextPath}/movie/detail"><img src="/assets/images/mov02.jpg"/></a>
+	                      <a href="${contextPath}/movie/detail?movie_no=${movie_list.movie_no}"><img src="${movie_list.posters}"></a>
 	                      <div class="hover-effect">
-	                        <h6>써니</h6>
+	                        <h6>${movie_list.movie_title}</h6>
 	                      </div>
 	                    </div>
-	                   <h4><a href="${contextPath}/movie/detail">써니</a><br><span>249K Downloads</span></h4>
+	                   <h4><a href="${contextPath}/movie/detail?movie_no=${movie_list.movie_no}" style="font-size:18px;">${movie_list.movie_title}</a><br><span>249K Downloads</span></h4>
 	                    <ul>
-	                      <li><i class="fa fa-star"></i> 4.8</li>
+	                      <li><i class="fa fa-star"></i> ${movie_list.score}</li>
 	                      <li><i class="fa fa-eye"></i> 2.3M</li>
 	                    </ul>
 	                   </div>
+	                   </c:forEach>
 	              <!-- 영화 한 편 끝 -->
                  </div>
                 </div><!--***** 상영작 ***** -->
@@ -113,19 +114,21 @@ $(document).ready(function(){
           		<div id="pre">
 	                <div class="owl-features owl-carousel">
 	               	 <!-- 영화 한 편 시작-->
+	               	 	  <c:forEach items="${pre_movie_list}" var="pre_movie_list">
 		                  <div class="item">
 		                    <div class="thumb">
-		                      <a href="${contextPath}/movie/detail"><img src="/assets/images/mov01.jpg"/></a>
+		                      <a href="${contextPath}/movie/detail?movie_no=${pre_movie_list.movie_no}"><img src="${pre_movie_list.posters}"/></a>
 		                      <div class="hover-effect">
-		                        <h6>써니</h6>
+		                        <h6>${pre_movie_list.movie_title}</h6>
 		                      </div>
 		                    </div>
-		                   <h4><a href="${contextPath}/movie/detail">써니</a><br><span>249K Downloads</span></h4>
+		                   <h4><a href="${contextPath}/movie/detail?movie_no=${pre_movie_list.movie_no}" style="font-size:18px;">${pre_movie_list.movie_title}</a><br><span>249K Downloads</span></h4>
 		                    <ul>
 		                      <li><i class="fa fa-star"></i> 4.8</li>
 		                      <li><i class="fa fa-eye"></i> 2.3M</li>
 		                    </ul>
 		                    </div>
+		                    </c:forEach>
 		              <!-- 영화 한 편 끝 -->
 	                </div>
                 </div>

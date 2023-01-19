@@ -47,4 +47,19 @@
 		where userid = #{userid}
 	</select>
 	
+	<!-- 수정 -->
+	<update id= "userModify">
+		update mv_user set
+			userpw = #{userpw},
+			username = #{username},
+			useremail = #{useremail},
+			userbirth=#{userbirth}
+		where userid = #{userid}
+	</update>
+	
+	<delete id="userDelete">
+		delete from mv_user
+		where userid = #{userid}
+	</delete>
+	
 </mapper>

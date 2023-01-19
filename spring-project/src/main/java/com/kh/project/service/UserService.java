@@ -34,4 +34,12 @@ public class UserService {
 	public int checkDupId(String userid) {
 		return userDao.checkDupId(userid);
 	}
+	
+	public boolean userModify(UserVo vo) {
+		return userDao.userModify(vo);
+	}
+	
+	public boolean userDelete(String userid) {
+		return userDao.userDelete(userid);
+	}
 }

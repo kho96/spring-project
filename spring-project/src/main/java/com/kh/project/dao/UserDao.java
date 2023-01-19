@@ -40,4 +40,22 @@ public class UserDao {
 		System.out.println("dao,"+count);
 		return sqlSession.selectOne(NAMESPACE + "checkDupId", userid);
 	}
+	
+	public boolean userModify(UserVo vo) {
+		int count = sqlSession.update(NAMESPACE + "userModify", vo);
+		System.out.println("modcount얼마"+count);
+		if (count > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean userDelete(String userid) {
+		int count = sqlSession.update(NAMESPACE + "userDelete", userid);
+		System.out.println("delcount"+count);
+		if (count > 0) {
+			return true;
+		}
+		return false;
+	}
 }
