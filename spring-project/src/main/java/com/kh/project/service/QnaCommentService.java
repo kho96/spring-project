@@ -15,7 +15,7 @@ import com.kh.project.dao.QnaDao;
 import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.QnaCommentVo;
 import com.kh.project.vo.QnaVo;
-
+ 
 @Service
 public class QnaCommentService {
 	

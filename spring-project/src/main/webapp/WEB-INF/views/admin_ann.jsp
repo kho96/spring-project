@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jspf" %>
 <script src="/js/myscript.js"></script>
-<script>
+<script> 
 $(document).ready(function() {
 	$('.list-group > a').click(function(e){
 		$('.list-group > a').removeClass('active');

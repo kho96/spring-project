@@ -15,7 +15,7 @@
                                             order by q.qna_no desc) a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
-	
+	 
 	<select id="showQnaDetail" resultType="QnaVo">
 		select q.qna_no, q.qna_title, q.qna_content, q.qna_state, q.qna_regdate, c.qna_no answer_no
         from tbl_qna q, tbl_qna_comment c

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header.jspf" %>
-<div class="sidebar">
+<div class="sidebar"> 
     <!-- 사이드 바 메뉴-->
     <div class="panel panel-info">
     

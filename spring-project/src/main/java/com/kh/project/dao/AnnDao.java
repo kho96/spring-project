@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.PagingDto;
 
-
+ 
 @Repository
 public class AnnDao {
 	private final String NAMESPACE = "mappers.ann.";

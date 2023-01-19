@@ -7,7 +7,7 @@
 		insert into tbl_ann(ann_no, ann_category, ann_title, ann_content)
 		values (seq_tbl_ann_no.nextval, #{ann_category}, #{ann_title}, #{ann_content})
 	</insert>
-	
+	 
 	<select id="getList" resultType="AnnVo"> <!-- pagingDto 추가 필요 -->
 		select * from (select rownum rnum, b.* from(select * from tbl_ann
                 		order by ann_no desc) b)

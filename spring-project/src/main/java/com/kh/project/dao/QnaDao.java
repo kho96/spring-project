@@ -13,7 +13,7 @@ import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.PagingDto;
 import com.kh.project.vo.QnaVo;
 
-
+ 
 @Repository
 public class QnaDao {
 	private final String NAMESPACE = "mappers.qna.";

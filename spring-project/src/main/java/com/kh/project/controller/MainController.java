@@ -32,7 +32,7 @@ import com.kh.project.vo.UserVo;
 @Controller
 @RequestMapping(value = "/movie/*")
 public class MainController {
-	
+	 
 	@Autowired
 	private UserService userService;
 	

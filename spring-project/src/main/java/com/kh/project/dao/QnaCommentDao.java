@@ -13,7 +13,7 @@ import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.QnaCommentVo;
 import com.kh.project.vo.QnaVo;
 
-
+ 
 @Repository
 public class QnaCommentDao {
 	private final String NAMESPACE = "mappers.qnacomment.";

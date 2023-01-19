@@ -25,7 +25,7 @@ import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.PagingDto;
 import com.kh.project.vo.QnaCommentVo;
 import com.kh.project.vo.QnaVo;
-
+ 
 @Controller
 @RequestMapping(value = "/movie/admin/*")
 public class AdminController {

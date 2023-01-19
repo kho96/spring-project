@@ -13,7 +13,7 @@ import com.kh.project.vo.AnnLikeVo;
 import com.kh.project.vo.AnnVo;
 import com.kh.project.vo.PagingDto;
 
-
+ 
 @Repository
 public class AnnLikeDao {
 	private final String NAMESPACE = "mappers.annlike.";

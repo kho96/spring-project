@@ -3,7 +3,7 @@ package com.kh.project.vo;
 import java.sql.Timestamp;
 
 import lombok.Data;
-
+ 
 @Data
 public class AnnVo {
 	private int ann_no;

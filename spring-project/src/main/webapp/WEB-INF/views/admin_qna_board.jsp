@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header.jspf"%>
-<script>
+<script> 
 $(document).ready(function(){
 	// 등록 버튼
 	$(".btnWrite").click(function(){

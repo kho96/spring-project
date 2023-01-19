@@ -3,7 +3,7 @@ package com.kh.project.vo;
 import java.sql.Timestamp;
 
 import lombok.Data;
-
+ 
 @Data
 public class QnaVo {
 	private int qna_no;
