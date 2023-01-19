@@ -3,26 +3,31 @@
 <%@ include file="../include/header.jspf" %>
 <script>
 $(document).ready(function() {
-	$("#btnguest").click(function() {
-		console.log("실행")
-		if($("#guest").css("display")=="none") {
-			$("#guest").css("display","block");
-			$("#login").css("display","none");
-		} else if($("#guest").css("display")=="block"){
-				$("#guest").css("display","none");
-				$("#login").css("display","block");	
-		}
-	});
-	$("#btnmember").click(function() {
-		console.log("실행")
-		if($("#guest").css("display")=="block") {
-			$("#guest").css("display","none");
-			$("#login").css("display","block");
-		} else if($("#guest").css("display")=="none"){
-				$("#guest").css("display","block");
-				$("#login").css("display","none");	
-		}
-	});
+	var loginResult = "${loginResult}";
+   $("#btnguest").click(function() {
+      console.log("실행")
+      if($("#guest").css("display")=="none") {
+         $("#guest").css("display","block");
+         $("#login").css("display","none");
+      } else if($("#guest").css("display")=="block"){
+            $("#guest").css("display","none");
+            $("#login").css("display","block");   
+      }
+   });
+   $("#btnmember").click(function() {
+      console.log("실행")
+      if($("#guest").css("display")=="block") {
+         $("#guest").css("display","none");
+         $("#login").css("display","block");
+      } else if($("#guest").css("display")=="none"){
+            $("#guest").css("display","block");
+            $("#login").css("display","none");   
+      }
+   });
+	if (loginResult == "fail") {
+		console.log("loginResult",loginResult);
+		alert("로그인에 실패했습니다.\n아이디와 비밀번호를 확인해주세요.");
+	}
 });
 </script>
 
@@ -51,7 +56,7 @@ $(document).ready(function() {
                       </li>
                     </ul>
                     <div class="main-border-button" style="margin-top: 25px">
-                    	<div style="float: left;">
+                       <div style="float: left;">
                         <button type="submit" id=btnLogin>로그인</button>
                         <button type="button" id=btnguest>비회원</button>
                         </div>
@@ -61,12 +66,13 @@ $(document).ready(function() {
                     </div>
                     </form>   
                      
-                	
+                   
                   <form name="guest" id="guest" method="post" action="guest" style="display:none">
                   <span>비회원예매</span>
                     <ul>
                       <li>
                       <input type="text" title="전화번호" id="guestid" name="guestid" data-title="전화번호를 " data-message="입력하세요." required="required" placeholder="전화번호">
+                      <a href="${contextPath}/movie/kakao" style="color:#fff">카카오인증</a>
                       </li>
                       <li>
                       <input type="password" title="비밀번호" id="guestpw" name="guestpw" data-title="비밀번호 " data-message="입력하세요." required="required" placeholder="비밀번호 ">
