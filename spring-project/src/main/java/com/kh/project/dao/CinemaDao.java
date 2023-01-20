@@ -92,11 +92,10 @@ public class CinemaDao {
 		String time = vo.getRe_time();
 		String cinema_time = "2023/" + day + " " + time; // 시간 알아내서 만들기
 		map.put("cinema_time", cinema_time);
-//		Map<String, List<Integer>> seatMap = new HashMap<>(); //mybatis에서 사용할 List가 담긴 map 생성하기
-//		seatMap.put("cols", cols);
-//		seatMap.put("rows", rows);
-//		map.put("map", seatMap);
 		int count = sqlSession.update(NAMESPACE + "updateCinema", map);
+		if (count > 0) {
+			return true;
+		}
 		return false;
 		
 	}
@@ -110,27 +109,4 @@ public class CinemaDao {
 		return sqlSession.selectOne(NAMESPACE + "getSeatsLeft", map);
 	}
 
-	public boolean updateCinema2(ReservationVo vo, int col, int row) {
-		String day = vo.getRe_day();
-		String time = vo.getRe_time();
-		String cinema_time = "2023/" + day + " " + time; // 시간 알아내서 만들기
-//		String cienma_name = vo.getRe_cinema(); //극장
-//		String cienma_movie = vo.getRe_movie(); //영화
-		Map<Object, Object> map = new HashMap<>();
-		map.put("vo", vo);
-//		map.put("cinema_name", cienma_name);
-//		map.put("cienma_movie", cienma_movie);
-		map.put("col", col);
-		map.put("row", row);
-		map.put("cinema_time", cinema_time);
-		System.out.println("map : " + map);
-		int count = sqlSession.update(NAMESPACE + "updateCinema2", map);
-		if (count > 0) {
-			return true;
-		}
-		return false;
-		
-	}
-
-	
 }

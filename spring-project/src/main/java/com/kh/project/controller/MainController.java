@@ -105,10 +105,10 @@ public class MainController {
 		boolean result = reservationService.reservation(vo);
 		if (result) {
 			rttr.addFlashAttribute("reservation_result", "success");
-			return "redirect:/main";
+			return "redirect:main";
 		}
 		rttr.addFlashAttribute("reservation_result", "fail");
-		return "redirect:/booking";
+		return "redirect:booking";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

@@ -241,7 +241,7 @@ $(function() {
 			
 			
 			
-			// 결제버튼
+			// 좌석 선택완료 버튼
 			$("#btn-payment").click(function(e) {
 				e.preventDefault();
 				
