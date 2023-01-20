@@ -12,7 +12,8 @@
 
 <script>
 $(document).ready(function(){
-	
+	 var reservation_result = "${reservation_result}"; // 예매처리 세션값 확인
+	 if(reservation_result == "success") alert("예매 성공!!"); // 예매 성공 메세지 
 	 /* 상영예정 및 현재 상영작 캐러셀 이벤트 */
 	   var toggle_command = false;
 	   $("#pre").hide();

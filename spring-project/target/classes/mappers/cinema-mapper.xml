@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mappers.cinema">
+	
+	<!-- 영화정보 얻어내기 -->
+	<select id="getMovieList" resultType="String">
+		select distinct cinema_movie from tbl_cinema
+	</select>
+	
+	<!-- 모든 극장정보 얻어내기 -->
+	<select id="getCinemaList" resultType="String">
+		select distinct cinema_name from tbl_cinema
+	</select>
+	
+	<!-- 현재 날짜 기준으로 2주의 시간 얻기 -->
+	<select id="getDateList" resultType="Date">
+		<![CDATA[
+		select (sysdate + level - 1) as dates
+		from dual
+		connect by level <= sysdate+14 - sysdate
+		]]>
+	</select>
+	
+	<!-- 모든 상영시간 얻기 -->
+	<select id="getTimeList" resultType="Date">
+		select distinct cinema_time from tbl_cinema order by cinema_time
+	</select>
+	
+	<!-- 상영극장 알아내기 -->
+	<select id="getCinemaListByMovie" resultType="String">
+		select distinct cinema_name from tbl_cinema 
+		where cinema_movie = #{cinema_movie}
+	</select>
+	
+	<!-- 상영날짜 얻어내기 -->
+	<select id="getDateListByCinema" resultType="Date">
+		select distinct cinema_time from tbl_cinema 
+		where cinema_name = #{cinema_name} and cinema_movie = #{cinema_movie}
+	</select>
+	
+	<!-- 상영시간 얻어내기 -->
+	<select id="getTimeListByCinema" resultType="Date">
+		select distinct cinema_time from tbl_cinema 
+		where cinema_name = #{cinema_name} and cinema_movie = #{cinema_movie}
+		and to_char(cinema_time, 'MM/DD') = #{day}
+	</select>
+	
+	<!-- 좌석정보(col)수 -->
+	<select id="getSeatCol" resultType="int">
+		select count(distinct cinema_col) 
+		from tbl_cinema
+		where cinema_name=#{cinema_name} 
+			and cinema_movie=#{cinema_movie} 
+			and cinema_time=#{cinema_time}
+		order by cinema_col
+	</select>
+	
+	<!-- 각 좌석에 해당하는 예매가능 여부 -->
+	<select id="getSeatAll" resultType="CinemaVo">
+		select cinema_row, cinema_col , cinema_able 
+		from tbl_cinema
+		where cinema_name=#{cinema_name} 
+			and cinema_movie=#{cinema_movie} 
+			and cinema_time=#{cinema_time}
+	</select>
+	
+	<!-- 예매정보에 따른 남은 좌석 수 -->
+	<select id="getSeatsLeft" resultType="int">
+		select count(cinema_able) from tbl_cinema
+		where cinema_movie = #{cinema_movie} and cinema_name = #{cinema_name} 
+		    and cinema_time = #{cinema_time}
+		    and cinema_able = 'T'
+	</select>
+	
+	<!-- 좌석업데이트 -->
+	<update id="updateCinema">
+		update tbl_cinema set
+			cinema_able = 'F'
+		where cinema_movie = #{vo.re_movie} and cinema_name = #{vo.re_cinema} 
+		    and cinema_time = to_date(#{cinema_time}, 'YYYY/MM/DD HH24:mi') and 
+		    <foreach collection="seatList" item="dto" open="( "  close=" )" separator="or">
+				(cinema_row = #{dto.row} and cinema_col = #{dto.col})
+			</foreach>
+	</update> 
+	
+	<!-- 좌석업데이트 -->
+	<update id="updateCinema2">
+		update tbl_cinema set
+			cinema_able = 'F'
+		where cinema_movie = #{vo.re_movie} and cinema_name = #{vo.re_cinema} 
+		    and cinema_time = to_date(#{cinema_time}, 'YYYY/MM/DD HH24:mi') and cinema_col = #{col} and cinema_row = #{row}
+	</update>
+</mapper>
