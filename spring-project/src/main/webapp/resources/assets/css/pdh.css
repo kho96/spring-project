@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
-.form-area #form-input {
+.form-area .form-input {
   position: relative;
 }
 
-.form-area #form-input input {
-  background-color: #27292a;
+.form-area .form-input input {
+  width:100%;
+  /*background-color: #27292a;*/
   height: 46px;
   border-radius: 23px;
   border: 1px solid;
@@ -14,7 +15,7 @@
   padding: 0px 15px 0px 45px;
 }
 
-.form-area #form-input i {
+.form-area .form-input i {
   position: absolute;
   color: #666;
   left: 20px;
@@ -22,6 +23,10 @@
   width: 18px;
   height: 18px;
   font-size: 16px;
+}
+
+.movie-list {
+	padding-top: 10px;
 }
 
 .sidebar {
@@ -91,4 +96,14 @@
 	background-color: white;
 	border-color: #e75e8d;
 	color: #e75e8d;
+}
+
+.row-theater-top {
+	margin-top: -10px;
+	line-height: 3.5;
+}
+
+.row-theater {
+	margin-top: 20px;
+	line-height: 3.5;
 }

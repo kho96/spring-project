@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jspf" %>
-<script>
+<script> 
 $(document).ready(function() {
 	$('.list-group > a').click(function(e){
 		$('.list-group > a').removeClass('active');
@@ -42,11 +42,17 @@ $(document).ready(function() {
            <a href="${contextPath}/movie/admin" class="list-group-item list-group-item-action" aria-current="true">
              관리자 페이지
            </a>
-           <a href="${contextPath}/movie/admin/movie" class="list-group-item list-group-item-action">
+           <a href="${contextPath}/movie/admin/movie_management" class="list-group-item list-group-item-action">
              영화 관리
            </a>
-           <a href="${contextPath}/movie/admin/article" class="list-group-item list-group-item-action">
-             게시글 관리
+           <a href="${contextPath}/movie/admin/theater_management" class="list-group-item list-group-item-action">
+             상영관 관리
+           </a>
+           <a href="${contextPath}/movie/admin/annList" class="list-group-item list-group-item-action">
+             공지사항 관리
+           </a>
+           <a href="${contextPath}/movie/admin/qnaList" class="list-group-item list-group-item-action">
+             QNA 관리
            </a>
            <a href="${contextPath}/movie/admin/member" class="list-group-item list-group-item-action active">
              회원 관리
