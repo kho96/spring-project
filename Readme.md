@@ -19,6 +19,9 @@ Spring 프레임워크를 사용한 MVC패턴의 개발 경험과 <br/>
 - 사용 DB : Oracle DB<br/>
 [![ERD](https://github.com/kho96/spring-project/blob/main/readme-img/ERD.png)](#프로젝트-설명)<br/>
 
+- 프로젝트 일정 관리 : WBS <br/>
+![WBS](https://github.com/kho96/spring-project/blob/main/readme-img/WBS.gif)
+
 - 기타 : JDBC, JSP, JQuery, Js, bootstrap 4, lombok, Git, GitHub, 네이버 검색 API, KMDB 영화 API
 
 ## 팀원 소개
