@@ -1,6 +1,6 @@
 # 프로젝트 소개
 Spring 프레임워크를 이용한 영화관 웹 사이트 구현 프로젝트 입니다. </br>팀 프로젝트로 진행하였습니다.<br/>
-<!--[![메인 이미지](https://github.com/kho96/java-swing-project/blob/master/img-readme/main-img.PNG)](#목차)-->
+[![메인 이미지](https://github.com/kho96/spring-project/blob/main/readme-img/main.png)](#목차)
 ## 목차
 1. [프로젝트 선정 이유](#프로젝트-선정-이유)
 2. [프로젝트 설명](#프로젝트-설명)
@@ -17,7 +17,7 @@ Spring 프레임워크를 사용한 MVC패턴의 개발 경험과 <br/>
 ## 프로젝트 설명
 - 개발 환경 : STS(Java, 스프링 레거시(Spring legacy), mybatis)
 - 사용 DB : Oracle DB<br/>
-<!--[![ERD](https://github.com/kho96/java-swing-project/blob/master/img-readme/erd.png)](#프로젝트-설명)<br/>-->
+[![ERD](https://github.com/kho96/spring-project/blob/main/readme-img/ERD.png)](#프로젝트-설명)<br/>
 
 - 기타 : JDBC, JSP, JQuery, Js, bootstrap 4, lombok, Git, GitHub, 네이버 검색 API, KMDB 영화 API
 
@@ -37,39 +37,30 @@ Spring 프레임워크를 사용한 MVC패턴의 개발 경험과 <br/>
 - 김서진<br/>
   담당 작업 : 이벤트 페이지, 스토어 페이지
 ## flowchart
-<!--![flowchart](https://github.com/kho96/java-swing-project/blob/master/img-readme/flowchart.png)-->
+❗ 화면 흐름도의 경우 파일이 많아 gif파일로 만들었습니다.<br/>
+![flowchart](https://github.com/kho96/spring-project/blob/main/readme-img/flowchart.gif)
 
 ## 실행 화면
 ❗ 실행 화면의 경우 파일이 많아 gif파일로 만들었습니다.<br/>
-<!--실행 화면 pdf : [swing-pdf보기](https://github.com/kho96/java-swing-project/blob/master/swing.pdf)(개발 후기는 readme파일을 참고해주세요.)
 
-* <strong>Login Frame (로그인 화면)</strong>
-![view01](https://github.com/kho96/java-swing-project/blob/master/img-readme/LoginFrame.gif)
+* <strong>메인화면 header, 로그인/회원가입, 마이페이지.</strong>
+![view01](https://github.com/kho96/spring-project/blob/main/readme-img/kse.gif)
 
-* <strong>Register Frame (회원가입 화면)</strong>
-![view02](https://github.com/kho96/java-swing-project/blob/master/img-readme/RegisterFrame.gif)
+* <strong>이벤트 화면/스토어 페이지</strong>
+![view02](https://github.com/kho96/spring-project/blob/main/readme-img/ksj.gif)
 
-* <strong>Menu Frame (메뉴 화면)</strong><br/>
-![view03](https://github.com/kho96/java-swing-project/blob/master/img-readme/MenuFrame.gif)
+* <strong>영화 페이지/관리자 페이지(영화 등록/수정, 회원관리)</strong><br/>
+![view03](https://github.com/kho96/spring-project/blob/main/readme-img/pdh.gif)
 
-* <strong>Main Frame (메인 화면)</strong>
-![view04](https://github.com/kho96/java-swing-project/blob/master/img-readme/MainFrame.gif)
+* <strong>영화 티저영상 랜덤재생, 영화 예매, 예매에 따른 회원 포인트 변경</strong>
+![view04](https://github.com/kho96/spring-project/blob/main/readme-img/kkh.gif)
 
-* <strong>Write Frame (글쓰기 화면)</strong>
-![view05](https://github.com/kho96/java-swing-project/blob/master/img-readme/WriteFrame.gif)
-
-* <strong>PictureDiaryMain Frame (그림일기 메인 화면)</strong>
-![view06](https://github.com/kho96/java-swing-project/blob/master/img-readme/PicDiaryMain.gif)
-
-* <strong>PictureDiaryWrite Frame (그림일기 작성 화면)</strong>
-<!--![view07](https://github.com/kho96/java-swing-project/blob/master/img-readme/picWriteFrame.gif)-->
+* <strong>관리자 페이지(공지사항, 자주하는 질문, QA게시판)</strong>
+![view05](https://github.com/kho96/spring-project/blob/main/readme-img/yhh.gif)
 
 ## 개발 후기
-😵 어려웠던 점
->
-
-😲 배운 점
->
-
-🤔 아쉬웠던 점
-> 
+>![개발후기](https://github.com/kho96/spring-project/blob/main/readme-img/note-kkh.PNG)
+>![개발후기](https://github.com/kho96/spring-project/blob/main/readme-img/note-pdh.PNG)
+>![개발후기](https://github.com/kho96/spring-project/blob/main/readme-img/note-yhh.PNG)
+>![개발후기](https://github.com/kho96/spring-project/blob/main/readme-img/note-kse.PNG)
+>![개발후기](https://github.com/kho96/spring-project/blob/main/readme-img/note-ksj.PNG)
